@@ -21,6 +21,10 @@ Route::get('/test', function () {
     return view('recaptcha');
 });
 
+Route::get('/test2', function () {
+    return view('patient.test');
+});
+
 Route::resource('setting', 'SettingController');
 Route::resource('sessionregister', 'SessionregisterController');
 Route::resource('ptregister', 'PtRegisterController');

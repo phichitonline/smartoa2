@@ -30,11 +30,18 @@
                     <h2 class="mb-4">ข้อมูลส่วนตัว</h2>
 
                     <div class="form-row">
-                        <div class="form-group col-md-4 form-group input-style input-style-1 has-icon input-required mb-3">
-                            <i class="input-icon fa fa-address-card"></i>
+                        <div class="form-group col-md-4 form-group input-style input-style-1 has-icon input-required">
+                            {{-- <i class="input-icon fa fa-address-card"></i> --}}
                             <span class="color-highlight input-style-1-active">เลขที่บัตรประจำตัวประชาชน</span>
-                            <em>(required)</em>
-                            <input type="text" class="form-control" value="{{ old('cid', $cid) }}" disabled>
+                            <br>
+                            <a class="btn btn-m btn-full mb-3 rounded-xs text-uppercase font-900 shadow-s text-left">
+                                <i class="fa fa-address-card font-15 text-left"></i>
+                                &nbsp; &nbsp;{{ old('cid', $cid) }}
+                                <i class="fa fa-check font-15 text-success text-right float-right"></i>
+                            </a>
+
+                            {{-- <input type="text" class="form-control" value="{{ old('cid', $cid) }}"> --}}
+
                             <input type="hidden" name="cid" class="form-control" value="{{ old('cid', $cid) }}">
                             <input type="hidden" name="hn" class="form-control" value="{{$hn}}">
                             <input type="hidden" name="hos_guid" class="form-control" value="{{$hos_guid}}">
@@ -170,18 +177,18 @@
                         <i class="input-icon fa fa-map-marker"></i>
                         <span class="color-highlight input-style-1-active">ที่อยู่</span>
                         <em>(required)</em>
-                        <input name="addrpart" type="text" class="form-control mb-0" placeholder="บ้านเลขที่" value="{{ old('addrpart')}}">
+                        <input name="addrpart" type="text" class="form-control mb-0" placeholder="บ้านเลขที่" value="{{ old('addrpart')}}" required>
                         <small class="text-danger">{{ $errors->first('addrpart') }}</small>
                     </div>
                     <div class="form-group col-md-4 input-style input-style-1 has-icon input-required">
                         <span class="color-highlight input-style-1-active">หมู่ที่</span>
-                        <em>(required)</em>
+                        {{-- <em>(required)</em> --}}
                         <input name="moopart" type="number" class="form-control mb-0" placeholder="หมู่ที่" value="{{ old('moopart')}}">
                         <small class="text-danger">{{ $errors->first('moopart') }}</small>
                     </div>
                     <div class="form-group col-md-4 input-style input-style-1 has-icon input-required">
                         <span class="color-highlight input-style-1-active">ซอย/ถนน</span>
-                        <em>(required)</em>
+                        {{-- <em>(required)</em> --}}
                         <input name="road" type="text" class="form-control mb-0" placeholder="ซอย/ถนน" value="{{ old('road')}}">
                         <small class="text-danger">{{ $errors->first('road') }}</small>
                     </div>

@@ -122,7 +122,7 @@ class PtRegisterController extends Controller
             $lineid = "";
             $email = "";
         }
-        
+
         $get_hos_value = DB::connection('mysql_hos')->select('
             SELECT upper(concat("{",uuid(),"}")) AS get_uuid,LPAD((select serial_no as chn from serial where name="HN")+1,9,"0") AS get_hn
             ,(select serial_no as chn from serial where name="HN")+1 AS get_serial_no
@@ -184,7 +184,7 @@ class PtRegisterController extends Controller
     public function store(Request $request, UserRegister $model)
     {
         session_start();
-        
+
         $request->validate(
             [
                 'cid' => ['required', 'string', 'min:13'],
@@ -277,8 +277,8 @@ class PtRegisterController extends Controller
         if (isset($_SESSION["lineid"])) {
             $model->create($request->merge(['tel' => $request->hometel])->all());
         }
-        
-        
+
+
         $get_ptnote_id = DB::connection('mysql_hos')->select('SELECT MAX(ptnote_id)+1 AS ptnote_id FROM ptnote');
         foreach ($get_ptnote_id as $data) {
             $ptnote_id = $data->ptnote_id;
@@ -296,7 +296,7 @@ class PtRegisterController extends Controller
         DB::connection('mysql_hos')->update('
         UPDATE serial SET serial_no = "'.$ptnote_id.'" WHERE name = "ptnote_id"
         ');
-        
+
         ob_start();
         $_SESSION["patienthn"] = $request->hn;
         $_SESSION["ptbirthday"] = $birthday;
@@ -322,7 +322,7 @@ class PtRegisterController extends Controller
         } else {
             $view_menu = "disable";
         }
-        
+
         return view('patient.ptcard', [
             'moduletitle' => "ลงทะเบียนผู้ป่วยใหม่สำเร็จ",
             'view_menu' => $view_menu,
