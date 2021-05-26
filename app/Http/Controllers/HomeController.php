@@ -18,7 +18,7 @@ class HomeController extends Controller
         // session_destroy();
 
         if (isset($_GET["userId"])) {
-    
+
             $userid = $_GET["userId"];
             $email = $_GET["decodedIDToken2"];
 
@@ -48,7 +48,7 @@ class HomeController extends Controller
                     $email = $_GET["decodedIDToken2"];
                 }
             }
-            
+
         } else {
             $view_page = "error_close_app";
             $view_menu = "disable";

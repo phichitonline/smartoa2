@@ -1,10 +1,8 @@
 <?php
-session_start();
-$hn = $_SESSION['hn'];
 header("Content-type: image/jpeg");
 
 	try {
-		$host = "200.200.200.12";
+		$host = "203.157.220.244";
         $db = "hos";
         $user = "sa";
         $pwd = "p6rik=9trkosbo";
@@ -13,7 +11,7 @@ header("Content-type: image/jpeg");
         $myPDO -> exec("set names utf8");
         $myPDO -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = "SELECT image FROM patient_image WHERE hn = '".$hn."'  ";
+		$sql = "SELECT image FROM patient_image WHERE hn = '".$_GET['hn']."'  ";
 		$query = $myPDO->query($sql);
 		foreach($query as $row) {
 			echo $row['image'];

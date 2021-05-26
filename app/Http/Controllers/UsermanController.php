@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use App\Models\UserRegister;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class SettingController extends Controller
+class UsermanController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
     /**
      * Display a listing of the resource.
      *
@@ -20,9 +20,17 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('setting.index', [
+        $get_userregister = DB::connection('mysql')->select('
+        SELECT u.*,p.pname,p.fname,p.lname,i.image,p.sex,TIMESTAMPDIFF(YEAR,p.birthday,CURDATE()) AS age_y
+        FROM patientusers u
+        LEFT OUTER JOIN hos.patient p ON u.hn = p.hn
+        LEFT OUTER JOIN hos.patient_image i ON u.hn = i.hn
+        ');
+
+        return view('user.index', [
             'setting' => Setting::all(),
-            'moduletitle' => "Setting",
+            'userregister' => $get_userregister,
+            'moduletitle' => "User manager",
         ]);
     }
 
@@ -76,10 +84,9 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request, $id)
     {
-        $setting->update($request->all());
-        return redirect()->route('setting.index')->with('setting-updated','บันทึกสำเร็จ');
+        //
     }
 
     /**

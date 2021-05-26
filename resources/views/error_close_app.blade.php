@@ -7,8 +7,9 @@
 @section('content')
 
 <div class="header header-fixed header-logo-center bg-red2-dark">
-    <a href="" onclick="closed()" class="header-title color-white">ปิดโปรแกรม</a>
-    <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-times"></i></a>
+    <a href="#" onclick="closed()" class="header-title color-white">ปิดโปรแกรม</a>
+
+    <a href="#" class="header-icon header-icon-1"><i class="fas fa-times"></i></a>
     <a href="#" data-toggle-theme class="header-icon header-icon-4"><i class="fas fa-lightbulb"></i></a>
 </div>
 
@@ -23,7 +24,7 @@
         <p class="footer-text"><span>กรุณาปิดแล้วเริ่มต้นใหม่อีกครั้ง</span><br>
 
         <div class="clear"></div>
-    </div>    
+    </div>
 </div>
 
 @endsection

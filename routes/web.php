@@ -26,6 +26,7 @@ Route::get('/test2', function () {
 });
 
 Route::resource('setting', 'SettingController');
+Route::resource('userman', 'UsermanController');
 Route::resource('sessionregister', 'SessionregisterController');
 Route::resource('ptregister', 'PtRegisterController');
 Route::get('ptcheck', 'PtRegisterController@ptcheck')->name('ptcheck');
@@ -59,3 +60,7 @@ Route::get('/oappman', 'OappController@oappman')->name('oappman');
 Route::get('/oappconfirm', 'OappController@oappconfirm')->name('oappconfirm');
 
 Route::get('/showimage', 'ShowimageController@index')->name('showimage');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
