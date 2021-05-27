@@ -20,17 +20,29 @@ class UsermanController extends Controller
      */
     public function index()
     {
-        $get_userregister = DB::connection('mysql')->select('
-        SELECT u.*,p.pname,p.fname,p.lname,i.image,p.sex,TIMESTAMPDIFF(YEAR,p.birthday,CURDATE()) AS age_y
-        FROM patientusers u
-        LEFT OUTER JOIN hos.patient p ON u.hn = p.hn
-        LEFT OUTER JOIN hos.patient_image i ON u.hn = i.hn
-        ');
+        // $patient = DB::table('hos.patient')
+        //     ->select('hn', DB::raw('pname,fname,lname,sex,TIMESTAMPDIFF(YEAR,birthday,CURDATE()) AS age_y'))
+        //     ->get();
+
+        $patientusers = DB::table('patientusers')
+            ->leftJoin('hos.patient', 'patientusers.hn', '=', 'patient.hn')
+            ->leftJoin('hos.patient_image', 'patientusers.hn', '=', 'patient_image.hn')
+            // ->select('patientusers.*', 'patient.pname,patient.fname,patient.lname,patient.sex,TIMESTAMPDIFF(YEAR,patient.birthday,CURDATE()) AS age_y,patient_image.image')
+            ->paginate(25);
+
+        // $get_userregister = DB::connection('mysql')->select('
+        // SELECT u.*,p.pname,p.fname,p.lname,i.image,p.sex,TIMESTAMPDIFF(YEAR,p.birthday,CURDATE()) AS age_y
+        // FROM patientusers u
+        // LEFT OUTER JOIN hos.patient p ON u.hn = p.hn
+        // LEFT OUTER JOIN hos.patient_image i ON u.hn = i.hn
+        // ');
 
         return view('user.index', [
             'setting' => Setting::all(),
-            'userregister' => $get_userregister,
+            // 'userregister' => $get_userregister,
+            'patientusers' => $patientusers,
             'moduletitle' => "User manager",
+            // 'patientusers' => DB::table('patientusers')->paginate(25),
         ]);
     }
 

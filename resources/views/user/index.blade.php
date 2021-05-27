@@ -33,27 +33,28 @@ header("Content-type: image/jpeg");
             <h3>สมาชิก Line OA {{ $data->hos_name }}</h3>
             <p>ระบบบริหารจัดการผู้ป่วยที่ลงทะเบียน LineOA สำหรับผู้ดูแลระบบ</p>
 
-            @foreach ($userregister as $data)
+            @foreach ($patientusers as $data)
             @php
+            $age = date_diff(date_create($data->birthday), date_create('now'))->y;
             if ($data->image || NULL) {
                 $pic = "user_images.php?hn=".$data->hn."";
             } else {
                 switch ($data->sex) {
-                    case 1 : if ($data->age_y<=15) $pic="images/boy.jpg"; else $pic="images/male.jpg";break;
-                    case 2 : if ($data->age_y<=15) $pic="images/girl.jpg"; else $pic="images/female.jpg";break;
+                    case 1 : if ($age<=15) $pic="images/boy.jpg"; else $pic="images/male.jpg";break;
+                    case 2 : if ($age<=15) $pic="images/girl.jpg"; else $pic="images/female.jpg";break;
                     default : $pic="images/boy.jpg";break;
                 }
             }
             @endphp
 
-            <div class="divider mt-3"></div>
+            {{-- <div class="divider mt-3"></div> --}}
             <div class="user-slider owl-carousel">
                 <div class="user-left">
                     <div class="d-flex">
-                        <div><img src="{{ $pic }}" class="mr-3 rounded-circle shadow-l" width="50"></div>
+                        <div><img src="images/boy.jpg" class="mr-3 rounded-circle shadow-l" width="50"></div>
                         <div>
                             <h5 class="mt-1 mb-0">{{ $data->pname.$data->fname." ".$data->lname }}</h5>
-                            <p class="font-10 mt-n1 color-blue2-dark">อายุ {{ $data->age_y }} ปี โทรศัพท์: <a href="tel:{{ $data->tel }}">{{ $data->tel }}</a></p>
+                            <p class="font-10 mt-n1 color-blue2-dark">อายุ {{ $age }} ปี โทรศัพท์: <a href="tel:{{ $data->tel }}">{{ $data->tel }}</a></p>
                         </div>
                         <div class="ml-auto"><span class="next-slide-user badge bg-blue2-dark mt-2 p-2 font-8">เพิ่มเติม</span></div>
                     </div>
@@ -71,92 +72,11 @@ header("Content-type: image/jpeg");
                     </div>
                 </div>
             </div>
+            <div class="divider mt-3"></div>
             @endforeach
-            {{-- <div class="divider mt-3"></div> --}}
-{{--
-            <div class="user-slider owl-carousel">
-                <div class="user-left">
-                    <div class="d-flex">
-                        <div><img src="images/pictures/faces/2s.png" class="mr-3 rounded-circle shadow-l" width="50"></div>
-                        <div>
-                            <h5 class="mt-1 mb-0">Alexander Mac</h5>
-                            <p class="font-10 mt-n1 color-green1-dark">Support Team Manager</p>
-                        </div>
-                        <div class="ml-auto"><span class="next-slide-user badge bg-green1-dark mt-2 p-2 font-8">TAP FOR MORE</span></div>
-                    </div>
-                </div>
-                <div class="user-right">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="mt-1 mb-0">Alexander Mac</h5>
-                            <p class="font-10 mt-n1 color-green1-dark">Support Team Manager</p>
-                        </div>
-                        <div class="ml-auto">
-                            <a href="#" class="icon icon-xs rounded-circle shadow-l bg-phone"><i class="fa fa-phone"></i></a>
-                            <a href="#" class="icon icon-xs rounded-circle shadow-l bg-facebook mr-2 ml-2"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="icon icon-xs rounded-circle shadow-l bg-twitter"><i class="fab fa-twitter"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="divider mt-3"></div>
+            {{ $patientusers->links() }}
 
-
-            <div class="user-slider owl-carousel">
-                <div class="user-left">
-                    <div class="d-flex">
-                        <div><img src="images/pictures/faces/3s.png" class="mr-3 rounded-circle shadow-l" width="50"></div>
-                        <div>
-                            <h5 class="mt-1 mb-0">Johnatan Unixer</h5>
-                            <p class="font-10 mt-n1 color-blue2-dark">Executive Officer</p>
-                        </div>
-                        <div class="ml-auto"><span class="next-slide-user badge bg-blue2-dark mt-2 p-2 font-8">TAP FOR MORE</span></div>
-                    </div>
-                </div>
-                <div class="user-right">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="mt-1 mb-0">Johnatan Doe</h5>
-                            <p class="font-10 mt-n1 color-blue2-dark">Executive Officer</p>
-                        </div>
-                        <div class="ml-auto">
-                            <a href="#" class="icon icon-xs rounded-circle shadow-l bg-phone"><i class="fa fa-phone"></i></a>
-                            <a href="#" class="icon icon-xs rounded-circle shadow-l bg-facebook mr-2 ml-2"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="icon icon-xs rounded-circle shadow-l bg-twitter"><i class="fab fa-twitter"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="divider mt-3"></div>
-
-            <div class="user-slider owl-carousel">
-                <div class="user-left">
-                    <div class="d-flex">
-                        <div><img src="images/pictures/faces/4s.png" class="mr-3 rounded-circle shadow-l" width="50"></div>
-                        <div>
-                            <h5 class="mt-1 mb-0">Vincent Mobi</h5>
-                            <p class="font-10 mt-n1 color-gray2-dark">Back End Developer</p>
-                        </div>
-                        <div class="ml-auto"><span class="next-slide-user badge bg-blue2-dark mt-2 p-2 font-8">TAP FOR MORE</span></div>
-                    </div>
-                </div>
-                <div class="user-right">
-                    <div class="d-flex">
-                        <div>
-                            <h5 class="mt-1 mb-0">Vincent Mobi</h5>
-                            <p class="font-10 mt-n1 color-gray2-dark">Back End Developer</p>
-                        </div>
-                        <div class="ml-auto">
-                            <a href="#" class="icon icon-xs rounded-circle shadow-l bg-phone"><i class="fa fa-phone"></i></a>
-                            <a href="#" class="icon icon-xs rounded-circle shadow-l bg-facebook mr-2 ml-2"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="icon icon-xs rounded-circle shadow-l bg-twitter"><i class="fab fa-twitter"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-             --}}
         </div>
     </div>
 
