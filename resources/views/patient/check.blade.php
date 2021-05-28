@@ -31,6 +31,13 @@
     </div><br>
 @endif
 
+<div class="footer card card-style">
+    <a href="#" class="footer-title"><span class="color-highlight">
+        เพื่อความสะดวกรวดเร็วในการเข้ารับบริการ คุณสามารถลงทะเบียนทำบัตรใหม่ไว้ล่วงหน้า... <br>กรุณาตรวจสอบข้อมูลและลงทะเบียนต่อ
+    </span></a>
+    <div class="clear"><br></div>
+</div><br>
+
 <form method="GET" action="{{ route('ptcheck') }}" autocomplete="off" class="form-horizontal">
     @csrf
     {{-- @method('post') --}}

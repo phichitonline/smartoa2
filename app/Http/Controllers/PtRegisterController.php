@@ -192,6 +192,8 @@ class PtRegisterController extends Controller
                 'sexprename' => 'required',
                 'fname' => ['required', 'string', 'min:3'],
                 'lname' => ['required', 'string', 'min:3'],
+                'fathername' => ['required', 'string', 'min:3'],
+                'mathername' => ['required', 'string', 'min:3'],
                 'marrystatus' => 'required',
                 'bloodgrp' => 'required',
                 'occupation' => 'required',
@@ -210,6 +212,8 @@ class PtRegisterController extends Controller
                 'sexprename.required'=> 'กรุณาเลือกคำนำหน้าชื่อ',
                 'fname.required'=> 'กรอกชื่อ(อย่างน้อย 3 ตัวอักษร)',
                 'lname.required'=> 'กรอกนามสกุล',
+                'fathername.required'=> 'กรุณาระบุชื่อบิดา',
+                'mathername.required'=> 'กรุณาระบุชื่อมารดา',
                 'marrystatus.required'=> 'กรุณาเลือกสภาพสมรส',
                 'bloodgrp.required'=> 'กรุณาเลือกหมู่เลือด',
                 'occupation.required'=> 'กรุณาเลือกอาชีพ',
@@ -259,7 +263,7 @@ class PtRegisterController extends Controller
         ,patient_color_id,number_of_relatives,birth_order,person_labor_type_id,is_card_destroy
         ,card_destroy_date,g6pd,vid)
         VALUES ("'.$request->hos_guid.'","'.$request->hn.'","'.$pname.'","'.$request->fname.'","'.$request->lname.'","'.$request->occupation.'","'.$request->citizenship.'","'.$birthday.'","'.$request->addrpart.'"
-        ,"'.$request->moopart.'","'.$tmbpart.'","'.$amppart.'","'.$chwpart.'","'.$request->bloodgrp.'","",NULL,"",NULL,"",DATE(NOW()),"'.$request->hometel.'","","","","","'.$request->marrystatus.'","",NULL
+        ,"'.$request->moopart.'","'.$tmbpart.'","'.$amppart.'","'.$chwpart.'","'.$request->bloodgrp.'","",NULL,"",NULL,"'.$request->mathername.'",DATE(NOW()),"'.$request->hometel.'","","","","","'.$request->marrystatus.'","'.$request->mathername.'",NULL
         ,"'.$request->nationality.'",NULL,"10","'.$request->religion.'","'.$sex.'","","N",NULL,NULL,"11456","'.$request->cid.'",NULL,NULL,"2",NULL,NOW(),NULL,"'.$request->road.'","","","",NULL
         ,"",NULL,NULL,NULL,"",NULL,"","","","","","99","","00:00:00","",NULL,"N",NULL,"N",TIME(NOW()),"ลงทะเบียนออนไลน์","TH","","N",NULL,NULL,"",NULL,"",NULL,NULL,"","","","",NULL,NULL,NULL
         ,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)');

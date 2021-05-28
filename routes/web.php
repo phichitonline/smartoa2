@@ -17,13 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-    return view('recaptcha');
-});
+// Route::get('/recaptcha', function () {
+//     return view('recaptcha');
+// });
 
-Route::get('/test2', function () {
+Route::get('/test', function () {
     return view('patient.test');
 });
+
+Route::resource('recaptcha', 'RecaptchaController');
 
 Route::resource('setting', 'SettingController');
 Route::resource('userman', 'UsermanController');
@@ -61,6 +63,6 @@ Route::get('/oappconfirm', 'OappController@oappconfirm')->name('oappconfirm');
 
 Route::get('/showimage', 'ShowimageController@index')->name('showimage');
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

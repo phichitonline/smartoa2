@@ -30,7 +30,7 @@
                     <h2 class="mb-4">ข้อมูลส่วนตัว</h2>
 
                     <div class="form-row">
-                        <div class="form-group col-md-4 form-group input-style input-style-1 has-icon input-required">
+                        <div class="form-group col-md-4 input-style input-style-1 has-icon input-required">
                             {{-- <i class="input-icon fa fa-address-card"></i> --}}
                             <span class="color-highlight input-style-1-active">เลขที่บัตรประจำตัวประชาชน</span>
                             <br>
@@ -43,11 +43,11 @@
                             {{-- <input type="text" class="form-control" value="{{ old('cid', $cid) }}"> --}}
 
                             <input type="hidden" name="cid" class="form-control" value="{{ old('cid', $cid) }}">
-                            <input type="hidden" name="hn" class="form-control" value="{{$hn}}">
-                            <input type="hidden" name="hos_guid" class="form-control" value="{{$hos_guid}}">
-                            <input type="hidden" name="serial_no" class="form-control" value="{{$serial_no}}">
-                            <input type="hidden" name="lineid" class="form-control" value="{{$lineid}}">
-                            <input type="hidden" name="email" class="form-control" value="{{$email}}">
+                            <input type="hidden" name="hn" class="form-control" value="{{ old('hn', $hn) }}">
+                            <input type="hidden" name="hos_guid" class="form-control" value="{{ old('hos_guid', $hos_guid) }}">
+                            <input type="hidden" name="serial_no" class="form-control" value="{{ old('serial_no', $serial_no) }}">
+                            <input type="hidden" name="lineid" class="form-control" value="{{ old('lineid', $lineid) }}">
+                            <input type="hidden" name="email" class="form-control" value="{{ old('email', $email) }}">
                             <small class="text-danger">{{ $errors->first('cid') }}</small>
                         </div>
                     </div>
@@ -68,14 +68,14 @@
                             <i class="input-icon fa fa-user"></i>
                             <span class="color-highlight input-style-1-active">ชื่อ</span>
                             <em>(required)</em>
-                            <input type="name" name="fname" class="form-control mb-0" placeholder="ชื่อ" value="{{ old('fname')}}" required>
+                            <input type="text" name="fname" class="form-control mb-0" placeholder="ชื่อ (ภาษาไทย)" value="{{ old('fname')}}" required>
                             <small class="text-danger">{{ $errors->first('fname') }}</small>
                         </div>
                         <div class="form-group col-md-4 input-style input-style-1 has-icon input-required mb-3">
                             <i class="input-icon fa fa-user"></i>
                             <span class="color-highlight input-style-1-active">นามสกุล</span>
                             <em>(required)</em>
-                            <input type="name" name="lname" class="form-control mb-0" placeholder="นามสกุล" value="{{ old('lname')}}" required>
+                            <input type="text" name="lname" class="form-control mb-0" placeholder="นามสกุล (ภาษาไทย)" value="{{ old('lname')}}" required>
                             <small class="text-danger">{{ $errors->first('lname') }}</small>
                         </div>
                     </div>
@@ -109,6 +109,22 @@
                                 @endforeach
                             </select>
                             <small class="text-danger">{{ $errors->first('bloodgrp') }}</small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4 input-style input-style-1 has-icon input-required mb-3">
+                            <!--<i class="input-icon fa fa-calendar"></i>-->
+                            <span class="color-highlight input-style-1-active">ชื่อบิดา</span>
+                            <em>(required)</em>
+                            <input type="text" name="fathername" class="form-control mb-0" placeholder="ชื่อบิดา (ภาษาไทย)" value="{{ old('fathername') }}" required>
+                            <small class="text-danger">{{ $errors->first('fathername') }}</small>
+                        </div>
+                        <div class="form-group col-md-4 input-style input-style-1 has-icon input-required mb-3">
+                            <!--<i class="input-icon fa fa-calendar"></i>-->
+                            <span class="color-highlight input-style-1-active">ชื่อมารดา</span>
+                            <em>(required)</em>
+                            <input type="text" name="mathername" class="form-control mb-0" placeholder="ชื่อมารดา (ภาษาไทย)" value="{{ old('mathername') }}" required>
+                            <small class="text-danger">{{ $errors->first('mathername') }}</small>
                         </div>
                     </div>
 
