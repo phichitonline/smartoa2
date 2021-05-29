@@ -11,37 +11,45 @@
 
 <div class="page-content header-clear-small">
 
-    <div class="card card-style">
-        <div class="content mb-0">
-            <h1 class="text-center font-900 font-40 text-uppercase mb-0">ลงทะเบียน</h1>
-            <p class="text-center color-highlight font-11"><br>กรุณากรอกข้อมูลตรวจสอบเพื่อลงทะเบียน</p>
-
-            <form action="{{ route('recaptcha.store') }}" method="POST">
+            <form method="POST" action="{{ route('recaptcha.store') }}" autocomplete="off" class="form-horizontal">
                 @csrf
-                @method('post')
+                @method('POST')
 
-                <div class="form-row">
-                    <div class="form-group col-md-4 input-style has-icon input-style-2 input-required">
-                        <i class="input-icon fa fa-user color-theme"></i>
-                        <span>ข้อมูล input1</span>
-                        <em>(required)</em>
-                        <input type="text" name="input1" placeholder="กรอกข้อมูล" value="{{ old('input1')}}" required autofocus>
-                        <small class="text-danger">{{ $errors->first('input1') }}</small>
+                <div class="card card-style shadow-xl rounded-m">
+                    <div class="cal-footer">
+                        <h4 class="cal-title text-center text-uppercase font-25 bg-blue2-dark color-white">ตรวจสอบข้อมูลลงทะเบียน</h4>
+
+                        <div class="content mb-0">
+                            <div class="input-style has-icon input-style-2 input-required">
+                                <i class="input-icon fa fa-address-card color-theme"></i>
+                                <span class="color-highlight input-style-1-active">เลขบัตรประจำตัวประชาชน</span>
+                                <em>(required)</em>
+                                <input class="form-control" type="tel" name="cid" value="{{ old('cid') }}" placeholder="เลขบัตรประชาชน 13 หลัก" autofocus>
+                                <small class="text-danger">{{ $errors->first('cid') }}</small>
+                            </div>
+                            <div class="input-style has-icon input-style-2 input-required">
+                                <i class="input-icon fa fa-lock color-theme"></i>
+                                <span class="color-highlight input-style-1-active">วันเดือนปี พ.ศ.เกิด</span>
+                                <em>(required)</em>
+                                <input class="form-control" type="tel" name="birthday" value="{{ old('birthday') }}" placeholder="รูปแบบเป็นปี พ.ศ.เช่น 31122530">
+                                <small class="text-danger">{{ $errors->first('birthday') }}</small>
+                            </div>
+                        </div>
+                        <div class="content mb-0">
+                            @if (Session::has('g-recaptcha-response'))
+                                <small class="text-danger">{{ Session::get('g-recaptcha-response') }}
+                            @endif
+                            <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+                            <br/>
+                        </div>
+
+                        <button type="submit" class="btn scale-box mt-3 btn-center-l rounded-l shadow-xl bg-blue2-dark font-800 text-uppercase">ตรวจสอบข้อมูล</button>
+                        <div class="clear"><br></div>
+
                     </div>
                 </div>
 
-                @if (Session::has('g-recaptcha-response'))
-                    <small class="text-danger">{{ Session::get('g-recaptcha-response') }}
-                @endif
-                <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
-                <br/>
-                <input type="submit" value="Submit">
             </form>
-
-            <div class="clear"><br></div>
-
-        </div>
-    </div>
 
 </div>
 

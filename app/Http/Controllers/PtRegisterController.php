@@ -22,6 +22,17 @@ class PtRegisterController extends Controller
 
     public function ptcheck(request $request)
     {
+        $request->validate(
+            [
+                'cid' => ['required', 'string', 'min:13'],
+                'birthday' => ['required', 'string', 'min:8'],
+            ],
+            [
+                'cid.required'=> 'กรุณากรอกเลข 13 หลัก',
+                'birthday.required'=> 'กรุณากรอกวันเดือนปีเกิด ตามตัวอย่างนี้ 31122530',
+            ]
+        );
+
         $cid = $request->get('cid');
         $bdate = $request->get('birthday');
         session_start();
