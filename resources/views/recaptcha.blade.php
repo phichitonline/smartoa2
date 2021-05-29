@@ -2,7 +2,6 @@
 @section('menu-active-register','active-nav')
 @section('menu-active',' color-gray1-dark')
 @section('header_script')
-{{-- header --}}
 {{-- Google Recaptcha --}}
 <script src="https://www.google.com/recaptcha/api.js?hl=th" async defer></script>
 @endsection
@@ -48,10 +47,12 @@
                             </div>
                         </div>
                         <div class="content mb-0">
-                            @if (Session::has('g-recaptcha-response'))
-                                <small class="text-danger">{{ Session::get('g-recaptcha-response') }}
-                            @endif
                             <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+                            @if (Session::has('g-recaptcha-response'))
+                                <small class="text-danger">{{ Session::get('g-recaptcha-response') }}</small>
+                            @else
+                                <small>***กรุณาคลิกเพื่อยืนยันตัวตน***</small>
+                            @endif
                             <br/>
                         </div>
 

@@ -47,7 +47,7 @@ class RecaptchaController extends Controller
                     $response = \file_get_contents($url);
                     $response = json_decode($response);
                     if (!$response->success) {
-                        Session()->flash('g-recaptcha-response', 'โปรดคลิกเพื่อยืนยันว่าคุณไม่ใช่โปรแกรมอัตโนมัติ');
+                        Session()->flash('g-recaptcha-response', '***โปรดคลิกเพื่อยืนยันตัวตน***');
                         $fail($attribute.'Google reCaptcha failed');
                     }
                 },
@@ -56,14 +56,14 @@ class RecaptchaController extends Controller
             [
                 'cid.required'=> 'กรุณากรอกเลข 13 หลัก',
                 'birthday.required'=> 'กรุณากรอกวันเดือนปีเกิด ตามตัวอย่างนี้ 31122530',
-                'g-recaptcha-response.required'=> 'โปรดยืนยันว่าคุณไม่ใช่โปรแกรมอัตโนมัติ',
+                'g-recaptcha-response.required'=> '***โปรดคลิกเพื่อยืนยันตัวตน***',
             ]
         );
 
         return redirect()->route('recaptcha.index')->with(
-            Session()->flash('session-alert', 'ผลการตรวจสอบ OK'),
-            Session()->flash('session-alert-cid', $request->cid),
-            Session()->flash('session-alert-birthday', $request->birthday),
+            Session()->flash('session-alert', 'ผลการตรวจสอบถูกต้อง'),
+            Session()->flash('session-alert-cid', 'CID: '.$request->cid),
+            Session()->flash('session-alert-birthday', 'วันเกิด: '.$request->birthday),
         );
 
         // return view('recaptcha-ok', [
