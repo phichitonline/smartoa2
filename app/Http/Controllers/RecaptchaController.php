@@ -38,25 +38,25 @@ class RecaptchaController extends Controller
         $request->validate(
             [
                 'input1' => ['required', 'string', 'min:5'],
-                'g-recaptcha-response' => 'required',
+                // 'g-recaptcha-response' => 'required',
 
-                // 'g-recaptcha-response' => function ($attribute, $value, $fail) {
-                //     $secretKey = env('GOOGLE_RECAPTCHA_SECRET');
-                //     $response = $value;
-                //     $userIP = $_SERVER['REMOTE_ADDR'];
-                //     $url = "https://www.google.com/recaptcha/api/siteverify/?secret=$secretKey&response=$response&remoteip=$userIP";
-                //     $response = \file_get_contents($url);
-                //     $response = json_decode($response);
-                //     if (!$response->success) {
-                //         Session()->flash('g-recaptcha-response', 'คลิกเลือกเพื่อยืนยันเป็นมนุษย์ก่อนนะครับ');
-                //         $fail($attribute.'Google reCaptcha failed');
-                //     }
-                // },
+                'g-recaptcha-response' => function ($attribute, $value, $fail) {
+                    $secretKey = env('GOOGLE_RECAPTCHA_SECRET');
+                    $response = $value;
+                    $userIP = $_SERVER['REMOTE_ADDR'];
+                    $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                    $response = \file_get_contents($url);
+                    $response = json_decode($response);
+                    if (!$response->success) {
+                        Session()->flash('g-recaptcha-response', 'คลิกเลือกเพื่อยืนยันเป็นมนุษย์ก่อนนะครับ');
+                        $fail($attribute.'Google reCaptcha failed');
+                    }
+                },
 
             ],
             [
                 'input1.required'=> 'กรุณากรอกข้อมูลด้วยครับ',
-                'g-recaptcha-response.required'=> 'คลิกเลือกเพื่อยืนยันเป็นมนุษย์ก่อนนะครับ',
+                'g-recaptcha-response.required'=> 'โปรดยืนยันเป็นมนุษย์ก่อนนะครับ',
             ]
         );
 

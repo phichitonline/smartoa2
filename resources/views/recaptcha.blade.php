@@ -21,17 +21,19 @@
                 @method('post')
 
                 <div class="form-row">
-                <div class="form-group col-md-4 input-style has-icon input-style-2 input-required">
-                    <i class="input-icon fa fa-user color-theme"></i>
-                    <span>ข้อมูล input1</span>
-                    <em>(required)</em>
-                    <input type="text" name="input1" placeholder="กรอกข้อมูล" value="{{ old('input1')}}" required autofocus>
-                    <small class="text-danger">{{ $errors->first('input1') }}</small>
-                </div>
+                    <div class="form-group col-md-4 input-style has-icon input-style-2 input-required">
+                        <i class="input-icon fa fa-user color-theme"></i>
+                        <span>ข้อมูล input1</span>
+                        <em>(required)</em>
+                        <input type="text" name="input1" placeholder="กรอกข้อมูล" value="{{ old('input1')}}" required autofocus>
+                        <small class="text-danger">{{ $errors->first('input1') }}</small>
+                    </div>
                 </div>
 
+                @if (Session::has('g-recaptcha-response'))
+                    <small class="text-danger">{{ Session::get('g-recaptcha-response') }}
+                @endif
                 <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
-                <small class="text-danger">{{ $errors->first('g-recaptcha-response') }}</small>
                 <br/>
                 <input type="submit" value="Submit">
             </form>
