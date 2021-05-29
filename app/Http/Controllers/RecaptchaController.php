@@ -60,11 +60,17 @@ class RecaptchaController extends Controller
             ]
         );
 
-        return view('recaptcha-ok', [
-            'moduletitle' => "ตรวจสอบข้อมูล OK",
-            'cid' => $request->cid,
-            'birthday' => $request->birthday,
-        ]);
+        return redirect()->route('recaptcha.index')->with(
+            Session()->flash('session-alert', 'ผลการตรวจสอบ OK'),
+            Session()->flash('session-alert-cid', $request->cid),
+            Session()->flash('session-alert-birthday', $request->birthday),
+        );
+
+        // return view('recaptcha-ok', [
+        //     'moduletitle' => "ตรวจสอบข้อมูล OK",
+        //     'cid' => $request->cid,
+        //     'birthday' => $request->birthday,
+        // ]);
         // dd($request);
     }
 

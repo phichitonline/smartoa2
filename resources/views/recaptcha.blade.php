@@ -11,6 +11,18 @@
 
 <div class="page-content header-clear-small">
 
+@if (Session::has('session-alert'))
+        <div class="footer card card-style">
+            <a href="#" class="footer-title"><span class="text-success">{{ Session::get('session-alert') }}</span></a>
+            <br/>
+            <a href="#" class="footer-title"><span>{{ Session::get('session-alert-cid') }}</span></a>
+            <a href="#" class="footer-title"><span>{{ Session::get('session-alert-birthday') }}</span></a>
+            <div class="clear"><br></div>
+        </div><br>
+@endif
+
+{{-- <div class="page-content header-clear-small"> --}}
+
             <form method="POST" action="{{ route('recaptcha.store') }}" autocomplete="off" class="form-horizontal">
                 @csrf
                 @method('POST')
