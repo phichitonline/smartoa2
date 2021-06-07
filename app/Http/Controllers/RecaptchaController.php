@@ -60,9 +60,19 @@ class RecaptchaController extends Controller
             ]
         );
 
+        if (valid_citizen_id($request->cid) == 1) {
+            $cid_chk = 'เลขบัตรประชาชน '.$request->cid.' ถูกต้อง';
+            $cid_chk_c = 'success';
+        } else {
+            $cid_chk = 'เลขบัตรประชาชน '.$request->cid.' ไม่ถูกต้อง กรุณาตรวจสอบ';
+            $cid_chk_c = 'danger';
+        }
+
         return redirect()->route('recaptcha.index')->with(
             Session()->flash('session-alert', 'ผลการตรวจสอบถูกต้อง'),
             Session()->flash('session-alert-cid', 'CID: '.$request->cid),
+            Session()->flash('session-alert-cid-chk', $cid_chk),
+            Session()->flash('session-alert-cid-chk-c', $cid_chk_c),
             Session()->flash('session-alert-birthday', 'วันเกิด: '.$request->birthday),
         );
 

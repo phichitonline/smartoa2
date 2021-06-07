@@ -15,6 +15,7 @@
             <a href="#" class="footer-title"><span class="text-success">{{ Session::get('session-alert') }}</span></a>
             <br/>
             <a href="#" class="footer-title"><span>{{ Session::get('session-alert-cid') }}</span></a>
+            <a href="#" class="footer-title"><span class="text-{{ Session::get('session-alert-cid-chk-c') }}">{{ Session::get('session-alert-cid-chk') }}</span></a>
             <a href="#" class="footer-title"><span>{{ Session::get('session-alert-birthday') }}</span></a>
             <div class="clear"><br></div>
         </div><br>
