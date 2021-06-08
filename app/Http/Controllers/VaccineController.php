@@ -14,8 +14,8 @@ class VaccineController extends Controller
      */
     public function index()
     {
-        // session_start();
-        // $hn = $_SESSION["hn"];
+        session_start();
+        $hn = $_SESSION["hn"];
         $vaccine_list = DB::connection('mysql_hos')->select('
         SELECT o.vstdate,o.hn,o.vn,pv.vaccine_name,v.vaccine_plan_no,v.vaccine_lot_no,serial_no,vm.vaccine_manufacturer_name
         FROM ovst_vaccine v
@@ -23,7 +23,7 @@ class VaccineController extends Controller
         LEFT JOIN person_vaccine pv ON v.person_vaccine_id = pv.person_vaccine_id
         LEFT JOIN vaccine_inventory_lot vl ON v.vaccine_lot_no = vl.vaccine_lot_no AND v.serial_no = vl.vaccine_serial_no
         LEFT JOIN vaccine_manufacturer vm ON vl.vaccine_manufacturer_id = vm.vaccine_manufacturer_id
-        WHERE o.hn = "000035634"
+        WHERE o.hn = "'.$hn.''"
         ORDER BY o.vstdate ASC
         ');
 
