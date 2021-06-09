@@ -27,6 +27,7 @@ Route::get('/test', function () {
 
 Route::resource('recaptcha', 'RecaptchaController');
 Route::resource('vaccine', 'VaccineController');
+Route::resource('emr', 'EmrController');
 
 Route::resource('setting', 'SettingController');
 Route::resource('userman', 'UsermanController');

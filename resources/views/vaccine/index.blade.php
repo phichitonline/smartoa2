@@ -6,20 +6,12 @@
 
 @section('content')
 
-{{-- @foreach($setting as $data)
-@php
-    $hos_name = $data->hos_name;
-    $hos_url = $data->hos_url;
-    $hos_tel = $data->hos_tel;
-@endphp
-@endforeach --}}
-
 <div class="page-content header-clear-small">
 
     <div class="card card-style shadow-xl rounded-m">
         <div class="cal-footer">
 
-            <h4 class="cal-title text-center text-uppercase font-25 bg-green1-dark color-white">ข้อมูลวัคซีนของคุณ</h6>
+            <h4 class="cal-title text-center text-uppercase font-25 bg-pink2-dark color-white">{{ $moduletitle }}</h6>
 
             <div class="divider mb-0"></div>
 
@@ -27,7 +19,7 @@
                 @foreach($vaccine_list as $data)
                 <div class="mb-0">
                     <button class="btn accordion-btn"  data-toggle="collapse" data-target="#collapse{{ $data->vn }}">
-                        <i class="fa fa-cloud color-blue2-dark mr-2"></i>
+                        <i class="fa fa-syringe color-pink2-dark mr-2"></i>
                         {{ DateThaiShort($data->vstdate) }} : {{ $data->vaccine_name }}
                         @if ($data->vaccine_plan_no || null)
                             เข็มที่ {{ $data->vaccine_plan_no }}
@@ -60,7 +52,7 @@
         <a class="footer-title"><span class="color-highlight">หมายเหตุ</span></a>
         <p class="footer-text">
         <span class="font-16">
-            <br><br><b>หากมีปัญหา ข้อสงสัย ต้องการคำแนะนำหรือเลื่อนนัดยกเลิกนัด โปรดติดต่อเจ้าหน้าที่ <br>โทร <a href="tel:056621366">056621355</a>
+            <br><br><b>หากมีปัญหา ข้อสงสัย ต้องการคำแนะนำ โปรดติดต่อเจ้าหน้าที่ <br>โทร <a href="tel:056621366">056621355</a>
         </span>
         </p>
     </div>
