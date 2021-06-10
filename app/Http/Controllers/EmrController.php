@@ -14,14 +14,15 @@ class EmrController extends Controller
      */
     public function index()
     {
-        session_start();
-        $hn = $_SESSION["hn"];
-        // $hn = "000035634";
+        // session_start();
+        // $hn = $_SESSION["hn"];
+        $hn = "000080663";
         $visit_list = DB::connection('mysql_hos')->select('
-        SELECT v.*,s.*,p.pname,p.fname,p.lname
+        SELECT od.icd10,v.*,s.*,p.pname,p.fname,p.lname
         FROM ovst v
         LEFT JOIN opdscreen s ON v.vn = s.vn
         LEFT JOIN patient p ON v.hn = p.hn
+        LEFT JOIN ovstdiag od ON v.vn = od.vn
         WHERE v.hn = "'.$hn.'"
         ORDER BY v.vstdate DESC LIMIT 20
         ');

@@ -30,8 +30,12 @@
             <div class="list-group list-custom-large list-icon-0">
                 @foreach ($visit_list as $data)
                 <a href="{{ route('emr.show', $data->vn) }}">
-                    <i class="fa font-19 fa-stethoscope rounded-s color-green1-dark"></i>
-                    <span>{{ DateThaiShort($data->vstdate) }}</span>
+                    @if ($data->icd10 == "Z000")
+                        <i class="fa font-19 fa-user-md rounded-s color-blue1-dark"></i>
+                    @else
+                        <i class="fa font-19 fa-stethoscope rounded-s color-green1-dark"></i>
+                    @endif
+                    <span>{{ DateThaiShort($data->vstdate) }} <i class="fa fa-tint color-red1-dark"></i></span>
                     <strong>{{ $data->cc }}</strong>
                     <i class="fa fa-chevron-right opacity-30"></i>
                 </a>
@@ -41,7 +45,7 @@
     </div>
 
 
-    {{-- <div class="card card-style">
+    <div class="card card-style">
         <div class="content mb-0 mt-0">
             <div class="list-group list-custom-large list-icon-0">
                 <a href="#">
@@ -64,7 +68,7 @@
                 </a>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <div class="footer card card-style">
         <a href="#" class="footer-title"><span class="color-highlight">หมายเหตุ</span></a>
