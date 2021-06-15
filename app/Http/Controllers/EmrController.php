@@ -18,13 +18,29 @@ class EmrController extends Controller
         // $hn = $_SESSION["hn"];
         $hn = "000080663";
         $visit_list = DB::connection('mysql_hos')->select('
-        SELECT od.icd10,v.*,s.*,p.pname,p.fname,p.lname
-        FROM ovst v
-        LEFT JOIN opdscreen s ON v.vn = s.vn
-        LEFT JOIN patient p ON v.hn = p.hn
-        LEFT JOIN ovstdiag od ON v.vn = od.vn
-        WHERE v.hn = "'.$hn.'"
-        ORDER BY v.vstdate DESC LIMIT 20
+        SELECT t1.*,GROUP_CONCAT(t1.icd10) AS visitdiag FROM (
+            SELECT od.icd10,v.vn,v.hn,v.vstdate,v.vsttime,v.doctor,v.ovstist,v.ovstost,v.pttype,v.spclty,v.visit_type,v.staff
+            ,s.bps,s.bpd,s.bw,s.cc,s.pulse,s.temperature,s.rr,s.height,s.fbs,s.bmi,s.tg,s.hdl,s.ldl,s.bun,s.creatinine,s.ua,s.hba1c
+            ,s.checkup,s.found_allergy,s.hpi,s.pmh,s.tc,s.ast,s.alt,s.symptom,s.waist,s.creatinine_kidney_percent,s.egfr,s.hb
+            ,s.advice7_note,p.pname,p.fname,p.lname
+                    FROM ovst v
+                    LEFT JOIN opdscreen s ON v.vn = s.vn
+                    LEFT JOIN patient p ON v.hn = p.hn
+                    LEFT JOIN ovstdiag od ON v.vn = od.vn
+                    WHERE v.hn = "'.$hn.'" AND v.vstdate > DATE_ADD(NOW(), INTERVAL -1 YEAR)
+            UNION
+            SELECT od.icd10,v.vn,v.hn,v.vstdate,v.vsttime,v.doctor,v.ovstist,v.ovstost,v.pttype,v.spclty,v.visit_type,v.staff
+            ,s.bps,s.bpd,s.bw,s.cc,s.pulse,s.temperature,s.rr,s.height,s.fbs,s.bmi,s.tg,s.hdl,s.ldl,s.bun,s.creatinine,s.ua,s.hba1c
+            ,s.checkup,s.found_allergy,s.hpi,s.pmh,s.tc,s.ast,s.alt,s.symptom,s.waist,s.creatinine_kidney_percent,s.egfr,s.hb
+            ,s.advice7_note,p.pname,p.fname,p.lname
+                    FROM ovst v
+                    LEFT JOIN opdscreen s ON v.vn = s.vn
+                    LEFT JOIN patient p ON v.hn = p.hn
+                    LEFT JOIN ovstdiag od ON v.vn = od.vn
+                    WHERE v.hn = "'.$hn.'" AND od.icd10 = "Z000"
+            ) AS t1
+            GROUP BY t1.vn
+            ORDER BY t1.vstdate DESC
         ');
         foreach ($visit_list as $data) {
             $pname = $data->pname;
@@ -92,10 +108,25 @@ class EmrController extends Controller
 		LEFT JOIN opdscreen s ON v.vn = s.vn
         WHERE v.vn = "'.$id.'"
         ');
+        $visit_diag = DB::connection('mysql_hos')->select('
+        SELECT d.hn,d.vn,d.icd10,i.name,i.tname
+        FROM ovstdiag d
+        LEFT JOIN icd101 i ON d.icd10 = code
+        WHERE d.vn = "'.$id.'" AND d.icd10 REGEXP "[a-z]"
+        ');
+        $visit_drug = DB::connection('mysql_hos')->select('
+        SELECT o.vn,oi.icode,oi.qty,d.`name`,d.units
+        FROM ovst o
+        LEFT JOIN opitemrece oi ON o.vn = oi.vn
+        LEFT JOIN drugitems d ON oi.icode = d.icode
+        WHERE o.vn = "'.$id.'" AND (oi.icode LIKE "15%" OR oi.icode LIKE "16%")
+        ');
 
-        return view('emr.emr', [
+        return view('emr.checkup', [
             'moduletitle' => "ประวัติรับบริการ",
             'visit_detail' => $visit_detail,
+            'visit_diag' => $visit_diag,
+            'visit_drug' => $visit_drug,
         ]);
     }
 
