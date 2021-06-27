@@ -36,35 +36,46 @@
     <div class="card card-style">
         <div class="content mb-0">
             <h4 class="font-700 text-uppercase font-12 opacity-30 mb-3 mt-n2">ตรวจร่างกาย</h4>
-            <div class="d-flex">
-                <div class="col-6 pr-4 align-self-center">
-                    <p class="font-600 color-highlight mb-n1">ความดัน</p>
-                    <h1 class="mb-2">@if ($data->bps || "") {{ $data->bps }}/{{ $data->bpd }} @endif</h1>
+
+            <div class="divider mt-2 mb-3"></div>
+            <div class="row mb-0">
+                <div class="col-4">
+                    <div class="mx-0 mb-0">
+                        <h6 class="font-14 font-700">ความดัน</h6>
+                        <h1 class="@if ($data->bps > 140 OR $data->bpd > 100) {{ 'color-highlight' }} @else {{ 'color-blue2-dark' }} @endif mb-2">@if ($data->bps || "") {{ $data->bps }}/{{ $data->bpd }} @endif</h1>
+                    </div>
                 </div>
-                <div class="col-6 w-100 align-self-center pl-3">
-                    <h6 class="font-14 font-700">น้ำหนัก(กก.)<span class="float-right color-blue2-dark">{{ $data->bw }}</span></h6>
-                    <div class="divider mb-2 mt-1"></div>
-                    <h6 class="font-14 font-700">ส่วนสูง(ซม.)<span class="float-right color-blue2-dark">{{ $data->height }}</span></h6>
+                <div class="col-4 text-center">
+                    <div class="mx-0 mb-0">
+                        <h6 class="font-14 font-700">อุณหภูมิ(C)</h6>
+                        <h1 class="@if ($data->temperature > 37.4) {{ 'color-highlight' }} @else {{ 'color-blue2-dark' }} @endif mb-2">{{ $data->temperature }}</h1>
+                    </div>
+                </div>
+                <div class="col-4 pr-3 text-right">
+                    <div class="mx-0 mb-0">
+                        <h6 class="font-14 font-700">ชีพจร</h6>
+                        <h1 class="@if ($data->pulse > 100) {{ 'color-highlight' }} @else {{ 'color-blue2-dark' }} @endif mb-2">{{ $data->pulse }}</h1>
+                    </div>
                 </div>
             </div>
             <div class="divider mt-2 mb-3"></div>
             <div class="row mb-0">
                 <div class="col-4">
                     <div class="mx-0 mb-3">
-                        <h6 class="font-12 font-800 text-uppercase opacity-30">อุณหภูมิ</h6>
-                        <h3 class="color-red2-dark font-20 mb-0">{{ $data->temperature }}</h3>
+                        <h6 class="font-14 font-700">น้ำหนัก(กก.)</h6>
+                        <h3 class="@if ($data->bw > 100) {{ 'color-highlight' }} @else {{ 'color-blue2-dark' }} @endif font-20 mb-0">{{ $data->bw }}</h3>
                     </div>
                 </div>
                 <div class="col-4 text-center">
                     <div class="mx-0 mb-3">
-                        <h6 class="font-12 font-800 text-uppercase opacity-30">Expenses</h6>
-                        <h3 class="color-green2-dark font-20 mb-0">-18.2%</h3>
+                        <h6 class="font-14 font-700">ส่วนสูง(ซม.)</h6>
+                        <h3 class="@if ($data->height < 120) {{ 'color-highlight' }} @else {{ 'color-blue2-dark' }} @endif font-20 mb-0">{{ $data->height }}</h3>
                     </div>
                 </div>
                 <div class="col-4 pr-3 text-right">
                     <div class="mx-0 mb-3">
-                        <h6 class="font-12 font-800 text-uppercase opacity-30">Savings</h6>
-                        <h3 class="color-blue2-dark font-20 mb-0">$3,121</h3>
+                        <h6 class="font-14 font-700">BMI</h6>
+                        <h3 class="@if ($data->bmi < 18.5 OR $data->bmi > 30) {{ 'color-highlight' }} @else {{ 'color-blue2-dark' }} @endif font-20 mb-0">{{ $data->bmi }}</h3>
                     </div>
                 </div>
             </div>
