@@ -67,4 +67,3 @@ Route::get('/showimage', 'ShowimageController@index')->name('showimage');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
