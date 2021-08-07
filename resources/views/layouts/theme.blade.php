@@ -26,8 +26,8 @@
         <div>
             <div id="footer-bar" class="footer-bar-1">
                 <a class="@yield('menu-active-main')" @if(!isset($view_menu)) href="{{ url('/') }}/main" @endif><i class="fa fa-home @yield('menu-active')"></i><span>Home</span></a>
-                <a class="@yield('menu-active-book')"><i class="fa fa-calendar-plus color-gray1-dark"></i><span>จองคิว</span></a>
-                <!--<a class="@yield('menu-active-book')" @if(!isset($view_menu)) href="{{ url('/') }}/book" @endif><i class="fa fa-calendar-plus @yield('menu-active')"></i><span>จองคิว</span></a>-->
+                <!--<a class="@yield('menu-active-book')"><i class="fa fa-calendar-plus color-gray1-dark"></i><span>จองคิว</span></a>-->
+                <a class="@yield('menu-active-book')" @if(!isset($view_menu)) href="{{ url('/') }}/ptregister" @endif><i class="fa fa-calendar-plus @yield('menu-active')"></i><span>จองวัคซีน</span></a>
                 <a class="@yield('menu-active-oapp')" @if(!isset($view_menu)) href="{{ url('/') }}/oapp" @endif><i class="fa fa-calendar-alt @yield('menu-active')"></i><span>วันนัด</span></a>
                 <a class="@yield('menu-active-card')" @if(!isset($view_menu)) href="{{ url('/') }}/card" @endif><i class="fa fa-address-card @yield('menu-active')"></i><span>บัตรผู้ป่วย</span></a>
                 <a href="#" onclick="closed()"><i class="fa fa-times"></i><span>Close</span></a>

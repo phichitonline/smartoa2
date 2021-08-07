@@ -176,39 +176,43 @@
         @endif
 
         <div class="row text-center mb-0">
-            <a href="{{ url('/') }}/card" class="col-6 pr-0">
-                <div class="card card-style mr-2 mb-2">
-                    <img class="img-fluid" src="images/menu_v2_card.png">
-                </div>
-            </a>
-            <a href="{{ url('/') }}/emr" class="col-6 pl-0">
-                <div class="card card-style ml-2 mb-3">
-                    <img class="img-fluid" src="images/menu_v2_emr.png">
-                </div>
-            </a>
+            <!--<a href="{{ url('/') }}/card" class="col-6 pr-0">-->
+            <!--    <div class="card card-style mr-2 mb-2">-->
+            <!--        <img class="img-fluid" src="images/main_card.png">-->
+            <!--    </div>-->
+            <!--</a>-->
+            <!--<a href="#" class="col-6 pl-0">-->
+            <!--    <div class="card card-style ml-2 mb-3">-->
+            <!--        <img class="img-fluid" src="images/main_healthy.png">-->
+            <!--    </div>-->
+            <!--</a>-->
             <a href="{{ url('/') }}/oapp" class="col-6 pr-0">
                 <div class="card card-style mr-2 mb-2">
-                    <img class="img-fluid" src="images/menu_v2_oapp.png">
-                </div>
-            </a>
-            <a href="{{ url('/') }}/vaccine" class="col-6 pl-0">
-                <div class="card card-style ml-2 mb-3">
-                    <img class="img-fluid" src="images/menu_v2_vaccine.png">
-                </div>
-            </a>
-
-            <a href="#" class="col-6 pr-0">
-                <div class="card card-style mr-2 mb-2">
-                    <img class="img-fluid" src="images/book_healthy2.png">
+                    <img class="img-fluid" src="images/main_oapp.png">
                 </div>
             </a>
             <a href="{{ url('/') }}/book" class="col-6 pl-0">
+            <!--<a href="{{ url('/') }}/ptregister" class="col-6 pl-0">-->
                 <div class="card card-style ml-2 mb-3">
-                    <img class="img-fluid" src="images/book.png">
+                    <img class="img-fluid" src="images/book_covid19.png">
                 </div>
             </a>
-
-
+{{-- 
+            <a href="#" class="col-6 pr-0">
+                <div class="card card-style mr-2 mb-2">
+                    <i class="fa fa-stethoscope color-green1-dark fa-3x mt-5"></i>
+                    <h1 class="pt-4">ตรวจสุขภาพ</h1>
+                    <p class="font-11 opacity-50 mt-n1">ผลตรวจสุขภาพ</p>
+                </div>
+            </a>
+            <a href="#" id="openWindowWeb" onclick="openWindowWeb()" class="col-6 pl-0">
+                <div class="card card-style ml-2 mb-3">
+                    <i class="fa fa-globe color-blue2-dark fa-3x mt-5"></i>
+                    <h1 class="pt-4">เว็บไซต์</h1>
+                    <p class="font-11 opacity-50 mt-n1">เว็บโรงพยาบาล</p>
+                </div>
+            </a>
+ --}}
             <a href="tel:1669" class="col-6 pr-0">
                 <div class="card card-style mr-2 mb-2">
                     <img class="img-fluid" src="images/1669-4.png">
@@ -216,7 +220,7 @@
             </a>
             <a target="_blank" href="http://eservices.nhso.go.th/eServices/mobile/login.xhtml" class="col-6 pl-0">
                 <div class="card card-style ml-2">
-                    <img class="img-fluid" src="images/menu_v2_nhso.png">
+                    <img class="img-fluid" src="images/main_nhsocheck.png">
                 </div>
             </a>
         </div>
@@ -288,17 +292,6 @@
             <p class="footer-copyright">{!! config('app.copyright') !!}</p>
 
             @if ($isadmin == "A")
-            
-                <a href="#" onclick="event.preventDefault();
-    document.getElementById('msg-form').submit();"
-    class="btn btn-m btn-center-l text-uppercase font-900 bg-pink2-dark rounded-sm shadow-xl mt-4 mb-0">ประกาศข่าวสมาชิก LineOA</a>
-    <!--<form id="msg-form" action="https://restful.tphcp.go.th/smarthospital/flex_form.php" method="POST" class="d-none">-->
-    <form id="msg-form" action="https://restful.tphcp.go.th/smarthospital/flex_form_picture.php" method="POST" class="d-none">
-        @csrf
-        <input type="hidden" name="isadmin" value="isadmin">
-    </form>
-    
-            <!--<a href="https://restful.tphcp.go.th/smarthospital/flex_form.php" class="btn btn-m btn-center-l text-uppercase font-900 bg-pink2-dark rounded-sm shadow-xl mt-4 mb-0">ประกาศข่าวสมาชิก LineOA</a>-->
             <a href="{{ url('/') }}/setting" class="btn btn-m btn-center-l text-uppercase font-900 bg-red2-dark rounded-sm shadow-xl mt-4 mb-0">Setting</a>
             <a href="{{ url('/') }}/userman" class="btn btn-m btn-center-l text-uppercase font-900 bg-blue2-dark rounded-sm shadow-xl mt-4 mb-0">จัดการผู้ดูแล</a>
             @endif

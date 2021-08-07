@@ -15,8 +15,8 @@ class PtRegisterController extends Controller
     public function index()
     {
         return view('patient.check', [
-            'moduletitle' => "ลงทะเบียนผู้ป่วยใหม่",
-            'view_menu' => "disable",
+            'moduletitle' => "ตรวจสอบข้อมูล",
+            // 'view_menu' => "disable",
         ]);
     }
 

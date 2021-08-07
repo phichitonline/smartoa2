@@ -1,6 +1,7 @@
 <?php
 session_start();
-$hn = $_SESSION['hn'];
+$hn = "000035634";
+// $hn = $_SESSION['hn'];
 header("Content-type: image/jpeg");
 
 	try {

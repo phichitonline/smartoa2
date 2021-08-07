@@ -37,30 +37,41 @@ class RecaptchaController extends Controller
     {
         $request->validate(
             [
-                'input1' => ['required', 'string', 'min:5'],
-                'g-recaptcha-response' => 'required',
-
-                // 'g-recaptcha-response' => function ($attribute, $value, $fail) {
-                //     $secretKey = env('GOOGLE_RECAPTCHA_SECRET');
-                //     $response = $value;
-                //     $userIP = $_SERVER['REMOTE_ADDR'];
-                //     $url = "https://www.google.com/recaptcha/api/siteverify/?secret=$secretKey&response=$response&remoteip=$userIP";
-                //     $response = \file_get_contents($url);
-                //     $response = json_decode($response);
-                //     if (!$response->success) {
-                //         Session()->flash('g-recaptcha-response', 'คลิกเลือกเพื่อยืนยันเป็นมนุษย์ก่อนนะครับ');
-                //         $fail($attribute.'Google reCaptcha failed');
-                //     }
-                // },
+                'cid' => ['required', 'string', 'min:13'],
+                'birthday' => ['required', 'string', 'min:8'],
+                'g-recaptcha-response' => function ($attribute, $value, $fail) {
+                    $secretKey = env('GOOGLE_RECAPTCHA_SECRET');
+                    $response = $value;
+                    $userIP = $_SERVER['REMOTE_ADDR'];
+                    $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                    $response = \file_get_contents($url);
+                    $response = json_decode($response);
+                    if (!$response->success) {
+                        Session()->flash('g-recaptcha-response', 'โปรดคลิกเพื่อยืนยันว่าคุณไม่ใช่โปรแกรมอัตโนมัติ');
+                        $fail($attribute.'Google reCaptcha failed');
+                    }
+                },
 
             ],
             [
-                'input1.required'=> 'กรุณากรอกข้อมูลด้วยครับ',
-                'g-recaptcha-response.required'=> 'คลิกเลือกเพื่อยืนยันเป็นมนุษย์ก่อนนะครับ',
+                'cid.required'=> 'กรุณากรอกเลข 13 หลัก',
+                'birthday.required'=> 'กรุณากรอกวันเดือนปีเกิด ตามตัวอย่างนี้ 31122530',
+                'g-recaptcha-response.required'=> 'โปรดยืนยันว่าคุณไม่ใช่โปรแกรมอัตโนมัติ',
             ]
         );
 
-        dd($request);
+        return redirect()->route('recaptcha.index')->with(
+            Session()->flash('session-alert', 'ผลการตรวจสอบ OK'),
+            Session()->flash('session-alert-cid', $request->cid),
+            Session()->flash('session-alert-birthday', $request->birthday),
+        );
+
+        // return view('recaptcha-ok', [
+        //     'moduletitle' => "ตรวจสอบข้อมูล OK",
+        //     'cid' => $request->cid,
+        //     'birthday' => $request->birthday,
+        // ]);
+        // dd($request);
     }
 
     /**

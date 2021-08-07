@@ -1,6 +1,5 @@
 @extends('layouts.theme')
 @section('menu-active-main','')
-@section('menu-active',' color-gray1-dark')
 @section('header_script')
 {{-- header --}}
 @endsection

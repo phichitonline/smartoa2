@@ -65,4 +65,8 @@ Route::get('/showimage', 'ShowimageController@index')->name('showimage');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('emr', 'EmrController');
+Route::resource('vaccine', 'VaccineController');
+Route::get('/notify', 'NotifyController@index')->name('notify');
+Route::get('/notify/today', 'NotifyController@today')->name('notify');
+Route::get('/notify/tomorrow', 'NotifyController@tomorrow')->name('notify');

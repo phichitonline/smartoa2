@@ -30,20 +30,20 @@
         <div class="card" data-card-height="cover">
             <div class="card-center text-center">
                 <div class="content mr-0 ml-0 mb-0">
-                    <img class="preload-img img-fluid pl-3 pr-3" data-src="images/tphcp-logo.png">
-                    <p class="mt-1 mb-0 color-highlight font-12"><b>ยินดีต้อนรับ </b> </p>
-                    <h1 id="displayName" class="mt-2 mb-0 font-30"> </h1>
-                    {{-- <p id="userId" class="mt-n1 mb-0 color-highlight font-12"><b>LineID:</b> </p> --}}
-                    {{-- <p id="decodedIDToken" class="mt-n1 color-highlight font-12"><b>Email:</b> </p> --}}
+                    <img class="preload-img img-fluid pl-3 pr-3" data-src="images/tphcp-connect-logo2.png">
+                    <p class="mt-0 mb-0 color-highlight font-12"><b>ยินดีต้อนรับ </b> </p>
+                    <h1 id="displayName" class="mt-2 mb-1 font-30 text-primary"> </h1>
+                    <!--<p id="userId" class="mt-n1 mb-0 color-highlight font-12"><b>LineID:</b> </p>-->
+                    <p id="decodedIDToken" class="mt-n1 font-12"><b>Email:</b> </p>
 
                     
-                    <p class="mt-2 mb-0 boxed-text-xl">กด "เริ่มใช้งาน" เพื่อเข้าบริการออนไลน์</p>
+                    <p class="mt-2 mb-0 boxed-text-xl">กด "เริ่มใช้งาน" เพื่อเข้าสู่ระบบ</p>
                     <p class="mt-0 mb-0 boxed-text-xl">{{ config('app.name') }}</p>
                     
                     <form method="get" action="{{ url("/") }}/home" name=login id="loginform">
                         <input class="form-control" type="hidden" id="userId" name="userId">
                         <input class="form-control" type="hidden" id="decodedIDToken2" name="decodedIDToken2">
-                        <button type="submit" class="btn scale-box btn-m mt-3 btn-center-l rounded-l shadow-xl bg-highlight font-800 text-uppercase">เริ่มใช้งาน</button>
+                        <button type="submit" class="btn scale-box btn-m mt-3 btn-center-l rounded-l shadow-xl bg-blue2-dark font-800 text-white  text-uppercase">เริ่มใช้งาน</button>
                         {{-- <a href="#" data-back-button class="btn scale-box btn-m mt-5 btn-center-l rounded-l shadow-xl bg-highlight font-800 text-uppercase">เริ่มใช้งาน</a> --}}
                     </form>
 
@@ -70,8 +70,6 @@
             }
         })
         await liff.init({ liffId: "1655577633-EbDYm94w" })
-        
-        //await liff.init({ liffId: "1654103357-zl6xB06Y" }) //*** LineLIFF รพร.ตะพานหิน
     }
     main()
     
@@ -79,7 +77,7 @@
         const profile = await liff.getProfile()
         document.getElementById("displayName").append(profile.displayName)
         document.getElementById("userId").append(profile.userId)
-        // document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
+        document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
         $('#displayName').val(profile.displayName);
         $('#userId').val(profile.userId);
         $('#decodedIDToken2').val(liff.getDecodedIDToken().email);

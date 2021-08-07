@@ -22,7 +22,7 @@
         <span><i class="fa fa-check"></i></span>
         <strong>{{ $text_alert_message }}</strong>
         <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
-    </div> 
+    </div>
 
     @php
 
@@ -70,14 +70,17 @@
                         "text": "'.$text_line_message0.'",
                         "weight": "bold",
                         "size": "xxl",
-                        "margin": "md",
-                        "color": "#009900"
+                        "margin": "none",
+                        "color": "#009900",
+                        "wrap": true
                     },
                     {
                         "type": "text",
                         "text": "'.$text_line_message1.'",
                         "size": "lg",
-                        "weight": "bold"
+                        "weight": "bold",
+                        "margin": "lg",
+                        "wrap": true
                     },
                     {
                         "type": "text",
@@ -86,7 +89,8 @@
                     },
                     {
                         "type": "text",
-                        "text": "'.$text_line_message3.'"
+                        "text": "'.$text_line_message3.'",
+                        "wrap": true
                     },
                     {
                         "type": "separator",
@@ -103,7 +107,10 @@
                             "text": "'.$text_line_message4.'",
                             "color": "#ff0000",
                             "weight": "bold",
-                            "size": "xxl"
+                            "size": "xxl",
+                            "align": "center",
+                            "gravity": "center",
+                            "wrap": true
                         }
                         ],
                         "justifyContent": "center",
@@ -116,7 +123,7 @@
                     {
                         "type": "box",
                         "layout": "horizontal",
-                        "margin": "md",
+                        "margin": "xl",
                         "contents": [
                         {
                             "type": "text",
@@ -128,9 +135,13 @@
                             "type": "uri",
                             "label": "รายละเอียดเพิ่มเติม",
                             "uri": "https://liff.line.me/1654181242-WLYbaypY"
-                            }
+                            },
+                            "align": "center",
+                            "margin": "none"
                         }
-                        ]
+                        ],
+                        "alignItems": "center",
+                        "justifyContent": "center"
                     }
                     ]
                 },
@@ -139,7 +150,8 @@
                     "separator": true
                     }
                 }
-              
+
+
             }
             }]
         }',
@@ -158,10 +170,10 @@
     @endphp
 
     @endif
-    
+
     <div class="card card-style shadow-xl rounded-m">
         <div class="cal-footer">
-            
+
             <h4 class="cal-title text-center text-uppercase font-25 bg-green1-dark color-white">บริหารนัดออนไลน์</h6>
             <span class="cal-message mt-3 mb-3">
                 <i class="fa fa-bell font-18 color-green1-dark"></i>
@@ -228,10 +240,10 @@
             <br><br><b>หากมีปัญหาข้อสงสัย โปรดติดต่อ Admin</a>
         </span>
         </p>
-    </div> 
+    </div>
 
 </div>
-<!-- End of Page Content--> 
+<!-- End of Page Content-->
 
 @endsection
 

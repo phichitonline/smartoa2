@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'OA Smart HOS'),
+    'name' => env('APP_NAME', 'รพร.ตะพานหิน'),
     'copyright' => env('APP_COPYRIGHT', 'Copyright &copy; Dr.GHOST'),
 
     /*
