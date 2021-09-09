@@ -2,7 +2,6 @@
 @section('menu-active-register','active-nav')
 @section('menu-active',' color-gray1-dark')
 @section('header_script')
-{{-- header --}}
 {{-- Google Recaptcha --}}
 <script src="https://www.google.com/recaptcha/api.js?hl=th" async defer></script>
 @endsection
@@ -16,6 +15,10 @@
             <a href="#" class="footer-title"><span class="text-success">{{ Session::get('session-alert') }}</span></a>
             <br/>
             <a href="#" class="footer-title"><span>{{ Session::get('session-alert-cid') }}</span></a>
+<<<<<<< HEAD
+=======
+            <a href="#" class="footer-title"><span class="text-{{ Session::get('session-alert-cid-chk-c') }}">{{ Session::get('session-alert-cid-chk') }}</span></a>
+>>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
             <a href="#" class="footer-title"><span>{{ Session::get('session-alert-birthday') }}</span></a>
             <div class="clear"><br></div>
         </div><br>
@@ -48,10 +51,19 @@
                             </div>
                         </div>
                         <div class="content mb-0">
+<<<<<<< HEAD
                             @if (Session::has('g-recaptcha-response'))
                                 <small class="text-danger">{{ Session::get('g-recaptcha-response') }}
                             @endif
                             <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+=======
+                            <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+                            @if (Session::has('g-recaptcha-response'))
+                                <small class="text-danger">{{ Session::get('g-recaptcha-response') }}</small>
+                            @else
+                                <small>***กรุณาคลิกเพื่อยืนยันตัวตน***</small>
+                            @endif
+>>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
                             <br/>
                         </div>
 

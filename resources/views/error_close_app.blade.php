@@ -23,6 +23,12 @@
 
         <p class="footer-text"><span>กรุณาปิดแล้วเริ่มต้นใหม่อีกครั้ง</span><br>
 
+            <a href="#" onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();"
+            class="header-icon header-icon-4"><i class="fas fa-sign-out-alt"></i></a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
         <div class="clear"></div>
     </div>
 </div>

@@ -73,12 +73,21 @@
     @endif
 
         <div class="row text-center mb-0">
+<<<<<<< HEAD
             <!--<a href="{{ url('/') }}/bookcalendar/?flag=V" class="col-6 pr-0">-->
             <!--    <div class="card card-style mr-2 mb-2">-->
             <!--        <img class="img-fluid" src="images/book_covid19.png">-->
             <!--    </div>-->
             <!--</a>-->
             <a href="{{ url('/') }}/bookcalendar/?flag=C" class="col-6 pr-0">
+=======
+            <a href="{{ url('/') }}/bookcalendar/?flag=V" class="col-6 pr-0">
+                <div class="card card-style mr-2 mb-2">
+                    <img class="img-fluid" src="images/book_covid19.png">
+                </div>
+            </a>
+            {{-- <a href="{{ url('/') }}/bookcalendar/?flag=C" class="col-6 pr-0">
+>>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
                 <div class="card card-style mr-2 mb-2">
                     <img class="img-fluid" src="images/book_healthy.png">
                 </div>
@@ -97,7 +106,11 @@
                 <div class="card card-style ml-2">
                     <img class="img-fluid" src="images/book_opd.png">
                 </div>
+<<<<<<< HEAD
             </a>
+=======
+            </a> --}}
+>>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
         </div>
 
         <div class="footer card card-style">

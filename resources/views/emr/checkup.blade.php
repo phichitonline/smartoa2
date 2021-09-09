@@ -6,30 +6,6 @@
 
 @section('content')
 
-<<<<<<< HEAD
-@php
-    if ($status_type == "IPD") {
-        $h_color = "bg-red2-dark";
-        $h_icon = "fa fa-bed";
-    } elseif ($status_type == "NOR") {
-        $h_color = "bg-green2-dark";
-        $h_icon = "fas fa-stethoscope";
-    } elseif ($status_type == "CHK") {
-        $h_color = "bg-blue2-dark";
-        $h_icon = "fa fa-user-md";
-    } else {
-        $h_color = "";
-        $h_icon = "fas fa-stethoscope";
-    }
-@endphp
-<div class="header header-fixed header-logo-center {{ $h_color }}">
-    <a href="#" class="header-title color-white">{{ DateThaiShort($vstdate) }}</a>
-    <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-    <a href="#" class="header-icon header-icon-4"><i class="{{ $h_icon }}"></i></a>
-</div>
-
-@foreach ($visit_detail as $data)
-=======
 @foreach ($visit_detail as $data)
 
 <div class="header header-fixed header-logo-center bg-blue2-dark">
@@ -38,7 +14,6 @@
     <a href="#" class="header-icon header-icon-4"><i class="fas fa-stethoscope"></i></a>
 </div>
 
->>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
 <div class="page-content header-clear-medium">
 
     {{-- <div class="row text-center mb-0 mt-n2">
@@ -58,21 +33,11 @@
         </a>
     </div> --}}
 
-<<<<<<< HEAD
-        <div class="card card-style">
-=======
     <div class="card card-style">
->>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
         <div class="content mb-0">
-            <h4 class="font-700 text-uppercase font-12 opacity-30 mb-3 mt-n2">อาการสำคัญ</h4>
-            <div class="row mb-3">
-                <div class="col-12"><p class="font-13 mb-0 font-500 color-theme text-left">
-                    {{ $data->cc }}
-                </p></div>
-                <div class="divider w-100 mb-2 mt-2"></div>
-            </div>
-
             <h4 class="font-700 text-uppercase font-12 opacity-30 mb-3 mt-n2">ตรวจร่างกาย</h4>
+
+            <div class="divider mt-2 mb-3"></div>
             <div class="row mb-0">
                 <div class="col-4">
                     <div class="mx-0 mb-0">
@@ -151,7 +116,7 @@
                 <div class="list-group list-custom-small list-icon-0">
                     <a data-toggle="collapse" href="#collapse-1">
                         <i class="fa font-14 fa-tint color-red2-dark"></i>
-                        <span class="font-14">ตรวจเลือด</span>
+                        <span class="font-14">ตรวจเลือด CBC</span>
                         <i class="fa fa-angle-down"></i>
                     </a>
                 </div>
@@ -161,39 +126,25 @@
                         <div class="col-4"><p class="font-14 mb-0 font-800 color-theme text-center">ค่าปกติ</p></div>
                         <div class="col-4"><p class="font-14 mb-0 font-800 color-theme text-right">ผลตรวจ</p></div>
                         <div class="divider w-100 mb-0 mt-0"></div>
-                        @foreach ($visit_lab as $data)
-                            <div class="col-4"><p class="font-13 mb-0 font-500 color-theme text-left">{{ $data->lab_items_name }}</p></div>
-                            <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-center">{{ $data->lab_items_normal_value }}</p></div>
-                            @php
-                            if ($data->range_check_max || NULL) {
-                                if ($data->lab_order_result > $data->range_check_max) {
-                                    $r_result = "color-red2-dark";
-                                    $a_result = "fa fa-arrow-up";
-                                } else if ($data->lab_order_result < $data->range_check_min) {
-                                    $r_result = "color-green2-dark";
-                                    $a_result = "fa fa-arrow-down";
-                                } else {
-                                    $r_result = "";
-                                    $a_result = "";
-                                }
-                            } else {
-                                $r_result = "";
-                                $a_result = "";
-                            }
-                            @endphp
-                            <div class="col-4"><p class="font-13 mb-0 font-800 {{ $r_result }} text-right">
-                                <i class="{{ $a_result }} {{ $r_result }} pr-1"></i> {{ $data->lab_order_result }}
-                            </p></div>
-                            <div class="divider w-100 mb-0 mt-0"></div>
-                        @endforeach
-
+                        <div class="col-4"><p class="font-13 mb-0 font-500 color-theme text-left">FBS</p></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-center">14.10</p></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-800 color-red2-dark text-right"><i class="fa fa-arrow-up color-red2-dark pr-1"></i> 16.40</p></div>
+                        <div class="divider w-100 mb-0 mt-0"></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-500 color-theme text-left">HDL</p></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-center">16.30</p></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-right">15.50</p></div>
+                        <div class="divider w-100 mb-0 mt-0"></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-500 color-theme text-left">LDL</p></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-center">18.00</p></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-right">14.10</p></div>
+                        <div class="divider w-100 mb-0 mt-0"></div>
                     </div>
                 </div>
 
                 <div class="list-group list-custom-small list-icon-0">
                     <a data-toggle="collapse" href="#collapse-2">
                         <i class="fa font-14 fa-share-alt color-blue2-dark"></i>
-                        <span class="font-14">ตรวจปัสสาวะ</span>
+                        <span class="font-14">ตรวจปัสสาวะ Urine</span>
                         <i class="fa fa-angle-down"></i>
                     </a>
                 </div>
@@ -203,32 +154,18 @@
                         <div class="col-4"><p class="font-14 mb-0 font-800 color-theme text-center">ค่าปกติ</p></div>
                         <div class="col-4"><p class="font-14 mb-0 font-800 color-theme text-right">ผลตรวจ</p></div>
                         <div class="divider w-100 mb-0 mt-0"></div>
-                        @foreach ($visit_lab5 as $data)
-                            <div class="col-4"><p class="font-13 mb-0 font-500 color-theme text-left">{{ $data->lab_items_name }}</p></div>
-                            <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-center">{{ $data->lab_items_normal_value }}</p></div>
-                            @php
-                            if ($data->range_check_max || NULL) {
-                                if ($data->lab_order_result > $data->range_check_max) {
-                                    $r_result = "color-red2-dark";
-                                    $a_result = "fa fa-arrow-up";
-                                } else if ($data->lab_order_result < $data->range_check_min) {
-                                    $r_result = "color-green2-dark";
-                                    $a_result = "fa fa-arrow-down";
-                                } else {
-                                    $r_result = "";
-                                    $a_result = "";
-                                }
-                            } else {
-                                $r_result = "";
-                                $a_result = "";
-                            }
-                            @endphp
-                            <div class="col-4"><p class="font-13 mb-0 font-800 {{ $r_result }} text-right">
-                                <i class="{{ $a_result }} {{ $r_result }} pr-1"></i> {{ $data->lab_order_result }}
-                            </p></div>
-                            <div class="divider w-100 mb-0 mt-0"></div>
-                        @endforeach
-
+                        <div class="col-4"><p class="font-13 mb-0 font-500 color-theme text-left">FBS</p></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-center">14.10</p></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-800 color-red2-dark text-right"><i class="fa fa-arrow-up color-red2-dark pr-1"></i> 16.40</p></div>
+                        <div class="divider w-100 mb-0 mt-0"></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-500 color-theme text-left">HDL</p></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-center">16.30</p></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-right">15.50</p></div>
+                        <div class="divider w-100 mb-0 mt-0"></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-500 color-theme text-left">LDL</p></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-center">18.00</p></div>
+                        <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-right">14.10</p></div>
+                        <div class="divider w-100 mb-0 mt-0"></div>
                     </div>
                 </div>
 
@@ -243,11 +180,7 @@
                     <div class="row mb-3">
                         <div class="col-4"><p class="font-13 mb-0 font-500 color-theme text-left">X-Ray</p></div>
                         <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-center"></p></div>
-<<<<<<< HEAD
-                        <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-right">???</p></div>
-=======
                         <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-right">CXR Left</p></div>
->>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
                         <div class="divider w-100 mb-0 mt-0"></div>
                     </div>
                 </div>

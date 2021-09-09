@@ -14,8 +14,14 @@ class EmrController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         session_start();
         $hn = $_SESSION["hn"];
+=======
+        // session_start();
+        // $hn = $_SESSION["hn"];
+        $hn = "000035634";
+>>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
         $visit_list = DB::connection('mysql_hos')->select('
         SELECT t1.*,GROUP_CONCAT(t1.icd10) AS visitdiag FROM (
             SELECT od.icd10,v.vn,v.hn,v.vstdate,v.vsttime,v.doctor,v.ovstist,v.ovstost,v.pttype,v.spclty,v.visit_type,v.staff
@@ -101,6 +107,7 @@ class EmrController extends Controller
      */
     public function show($id)
     {
+<<<<<<< HEAD
         $visit_header = DB::connection('mysql_hos')->select('
         SELECT v.hn,v.vn,v.vstdate,IF(v.an IS NOT NULL,"IPD",IF(GROUP_CONCAT(d.icd10) LIKE "Z000","CHK","NOR")) AS status_type
         FROM ovst v
@@ -114,6 +121,8 @@ class EmrController extends Controller
             $status_type = $data->status_type;
         }
 
+=======
+>>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
         $visit_detail = DB::connection('mysql_hos')->select('
         SELECT v.*,s.*
         FROM ovst v
@@ -165,10 +174,13 @@ class EmrController extends Controller
             'visit_drug' => $visit_drug,
             'visit_lab' => $visit_lab,
             'visit_lab5' => $visit_lab5,
+<<<<<<< HEAD
             'status_type' => $status_type,
             'hn' => $hn,
             'vn' => $vn,
             'vstdate' => $vstdate,
+=======
+>>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
         ]);
     }
 

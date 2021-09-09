@@ -19,7 +19,11 @@
                 </div>
             </div>
             <div>
+<<<<<<< HEAD
                 <img src="{{ $pic }}" data-src="{{ $pic }}" width="50" class="rounded-circle mt- shadow-xl preload-img">
+=======
+                <img src="{{ $pic }}" data-src="{{ $pic }}" width="80" class="rounded-circle mt- shadow-xl preload-img">
+>>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
                 {{-- <img src="images/empty.png" data-src="images/pictures/faces/4s.png" width="80" class="rounded-circle mt- shadow-xl preload-img"> --}}
             </div>
         </div>
@@ -46,6 +50,11 @@
                         @endif
                     @endif
 
+<<<<<<< HEAD
+=======
+                    {{-- <span>{{ DateThaiShort($data->vstdate) }} @if ($data->an !== NULL) {{ "(ผู้ป่วยใน)" }} @endif</span>
+                    <strong>{{ $data->cc }}</strong> --}}
+>>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
                     <i class="fa fa-chevron-right opacity-30"></i>
                 </a>
                 @endforeach
@@ -54,7 +63,11 @@
     </div>
 
 
+<<<<<<< HEAD
     {{-- <div class="card card-style">
+=======
+    <div class="card card-style">
+>>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
         <div class="content mb-0 mt-0">
             <div class="list-group list-custom-large list-icon-0">
                 <a href="#">
@@ -77,7 +90,11 @@
                 </a>
             </div>
         </div>
+<<<<<<< HEAD
     </div> --}}
+=======
+    </div>
+>>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
 
     <div class="footer card card-style">
         <a href="#" class="footer-title"><span class="color-highlight">หมายเหตุ</span></a>

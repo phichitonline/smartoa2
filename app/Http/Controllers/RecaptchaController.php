@@ -47,7 +47,11 @@ class RecaptchaController extends Controller
                     $response = \file_get_contents($url);
                     $response = json_decode($response);
                     if (!$response->success) {
+<<<<<<< HEAD
                         Session()->flash('g-recaptcha-response', 'โปรดคลิกเพื่อยืนยันว่าคุณไม่ใช่โปรแกรมอัตโนมัติ');
+=======
+                        Session()->flash('g-recaptcha-response', '***โปรดคลิกเพื่อยืนยันตัวตน***');
+>>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
                         $fail($attribute.'Google reCaptcha failed');
                     }
                 },
@@ -56,6 +60,7 @@ class RecaptchaController extends Controller
             [
                 'cid.required'=> 'กรุณากรอกเลข 13 หลัก',
                 'birthday.required'=> 'กรุณากรอกวันเดือนปีเกิด ตามตัวอย่างนี้ 31122530',
+<<<<<<< HEAD
                 'g-recaptcha-response.required'=> 'โปรดยืนยันว่าคุณไม่ใช่โปรแกรมอัตโนมัติ',
             ]
         );
@@ -64,6 +69,26 @@ class RecaptchaController extends Controller
             Session()->flash('session-alert', 'ผลการตรวจสอบ OK'),
             Session()->flash('session-alert-cid', $request->cid),
             Session()->flash('session-alert-birthday', $request->birthday),
+=======
+                'g-recaptcha-response.required'=> '***โปรดคลิกเพื่อยืนยันตัวตน***',
+            ]
+        );
+
+        if (valid_citizen_id($request->cid) == 1) {
+            $cid_chk = 'เลขบัตรประชาชน '.$request->cid.' ถูกต้อง';
+            $cid_chk_c = 'success';
+        } else {
+            $cid_chk = 'เลขบัตรประชาชน '.$request->cid.' ไม่ถูกต้อง กรุณาตรวจสอบ';
+            $cid_chk_c = 'danger';
+        }
+
+        return redirect()->route('recaptcha.index')->with(
+            Session()->flash('session-alert', 'ผลการตรวจสอบถูกต้อง'),
+            Session()->flash('session-alert-cid', 'CID: '.$request->cid),
+            Session()->flash('session-alert-cid-chk', $cid_chk),
+            Session()->flash('session-alert-cid-chk-c', $cid_chk_c),
+            Session()->flash('session-alert-birthday', 'วันเกิด: '.$request->birthday),
+>>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
         );
 
         // return view('recaptcha-ok', [
