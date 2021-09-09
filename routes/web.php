@@ -67,7 +67,6 @@ Route::get('/showimage', 'ShowimageController@index')->name('showimage');
 
 Auth::routes();
 
-<<<<<<< HEAD
 Route::resource('emr', 'EmrController');
 Route::resource('vaccine', 'VaccineController');
 Route::get('/notify', 'NotifyController@index')->name('notify');
@@ -81,5 +80,3 @@ Route::get('/other', function () {
 Route::resource('covaccine', 'CovaccineController');
 Route::get('cocheck', 'CovaccineController@cocheck')->name('cocheck');
 Route::get('coinfo', 'CovaccineController@coinfo')->name('coinfo');
-=======
->>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
