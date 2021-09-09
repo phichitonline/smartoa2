@@ -20,6 +20,7 @@
 return [
     'channel_access_token' => env('LINE_BOT_CHANNEL_ACCESS_TOKEN', 'jPxuNlhHDFj0YJNMx8T15CMTYIHSekuh2/Ie4zGGuvsr8q89WxmQbTYawot3CwW/xbSjXwJEKXtZtbZbQ1GVga377qm9G6Av/xYhYd9xGdujw25NWEdotdjZDCbcsGykGSB7hPRKTY55YxiPnUjgegdB04t89/1O/w1cDnyilFU='),
     'channel_secret' => env('LINE_BOT_CHANNEL_SECRET', 'fdf51af07fa526ba1c168a141f5664ee'),
+    'liff_url_oapp' => env('LINE_LIFF_URL_OAPP', 'https://liff.line.me/1655577633-EbDYm94w'),
 ];
 
 

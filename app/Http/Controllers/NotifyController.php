@@ -23,7 +23,7 @@ class NotifyController extends Controller
         SELECT u.lineid AS line_id,o.*,p.pname,p.fname,p.lname FROM oapp o
         LEFT OUTER JOIN smarthos2.patientusers u ON u.hn = o.hn
         LEFT OUTER JOIN patient p ON p.hn = o.hn
-		WHERE o.hn IN (SELECT hn FROM smarthos2.patientusers) AND o.nextdate = DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 0 DAY),"%Y-%m-%d")
+		WHERE o.hn IN ("000035634") AND o.nextdate = "2020-05-01"
         ');
 
         return view('notify.notify', [
@@ -43,6 +43,7 @@ class NotifyController extends Controller
 		WHERE o.hn IN (SELECT hn FROM smarthos2.patientusers) AND o.nextdate = DATE_FORMAT(DATE_ADD(NOW(),INTERVAL 1 DAY),"%Y-%m-%d")
         ');
 
+        // WHERE o.hn IN ("000035634") AND o.nextdate = "2021-07-15"
         return view('notify.notify', [
             'moduletitle' => "พรุ่งนี้คุณมีนัด",
             'picture_url' => "https://restful.tphcp.go.th/appointment-tphcp4.jpg",

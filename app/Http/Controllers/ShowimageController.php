@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Storage;
 
 class ShowimageController extends Controller
 {
@@ -17,19 +16,17 @@ class ShowimageController extends Controller
     {
         session_start();
         $hn = "000035634";
-        // header("Content-type: image/jpeg");
-    
+        // $hn = $_SESSION['hn'];
         $images_user = DB::connection('mysql_hos')->select('
         SELECT image FROM patient_image WHERE hn = "'.$hn.'"
         ');
         foreach($images_user as $data){
-            // echo $data['image'];
+            $picture = $data['image'];
         }
 
-        return response()->file(Storage::get('images/tphcp-logo.png'), ['Content-Type' => 'image/jpeg']);
-        // return view('card.showimage', [
-        //     'pic' => $pic,
-        // ]);
+        return view('card.showimage', [
+            'picture' => $picture,
+        ]);
     }
 
     /**

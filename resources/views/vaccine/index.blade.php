@@ -46,6 +46,9 @@
                                 <li>Lot number : {{ $data->vaccine_lot_no }}</li>
                                 <li>Serial number : {{ $data->serial_no }}</li>
                                 @endif
+                                @if ($data->moph_certificate_code || null)
+                                <li>ใบรับรอง : <a target="_blank" href="https://co19cert.moph.go.th/cert?id={{ $data->moph_certificate_code }}">คลิกดูใบรับรอง</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>

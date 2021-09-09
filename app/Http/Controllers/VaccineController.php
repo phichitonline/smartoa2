@@ -15,14 +15,18 @@ class VaccineController extends Controller
     public function index()
     {
         session_start();
-        $hn = $_SESSION["hn"];
+        // $hn = $_SESSION["hn"];
+        $hn = "000035634";
         $vaccine_list = DB::connection('mysql_hos')->select('
-        SELECT o.vstdate,o.hn,o.vn,pv.vaccine_name,v.vaccine_plan_no,v.vaccine_lot_no,serial_no,vm.vaccine_manufacturer_name
+        SELECT o.vstdate,o.hn,o.vn,pv.vaccine_name,v.vaccine_plan_no,v.vaccine_lot_no,serial_no,vm.vaccine_manufacturer_name,p.cid
+        ,IF(v.vaccine_plan_no >= 2,dc.moph_certificate_code,NULL) AS moph_certificate_code
         FROM ovst_vaccine v
         LEFT JOIN ovst o ON v.vn = o.vn
+		LEFT JOIN patient p ON p.hn = o.hn
         LEFT JOIN person_vaccine pv ON v.person_vaccine_id = pv.person_vaccine_id
         LEFT JOIN vaccine_inventory_lot vl ON v.vaccine_lot_no = vl.vaccine_lot_no AND v.serial_no = vl.vaccine_serial_no
         LEFT JOIN vaccine_manufacturer vm ON vl.vaccine_manufacturer_id = vm.vaccine_manufacturer_id
+		LEFT JOIN (SELECT * FROM doctor_cert_covid19 GROUP BY patient_cid) dc ON dc.patient_cid = p.cid
         WHERE o.hn = "'.$hn.'"
         ORDER BY o.vstdate DESC
         ');

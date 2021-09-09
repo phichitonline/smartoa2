@@ -15,11 +15,14 @@ class MainController extends Controller
      */
     public function index()
     {
+        $hn = "000035634";
         session_start();
-        if (isset($_SESSION["hn"])) {
+        // if (isset($_SESSION["hn"])) {
+        if (isset($hn)) {
 
             $view_page = "main";
-            $hn = $_SESSION["hn"];
+            $hn = "000035634";
+            // $hn = $_SESSION["hn"];
 
             $check_patient = DB::connection('mysql_hos')->select('
             SELECT p.cid,p.hn,p.pname,p.fname,p.lname,p.birthday,p.bloodgrp,p.drugallergy,p.pttype,ptt.`name` AS pttypename,p.clinic,w.`status` AS q_status
@@ -133,10 +136,14 @@ class MainController extends Controller
                 $oapp_wait_confirm = $data->cc;
             }
 
-            $lineid = $_SESSION["lineid"];
-            $tel = $_SESSION["tel"];
-            $email = $_SESSION["email"];
-            $isadmin = $_SESSION["isadmin"];
+            // $lineid = $_SESSION["lineid"];
+            $lineid = "U59bdf1afa739eecc378d8fbdc2a4c02e";
+            // $tel = $_SESSION["tel"];
+            $tel = "0619921666";
+            // $email = $_SESSION["email"];
+            $email = "phichitonline@gmail.com";
+            // $isadmin = $_SESSION["isadmin"];
+            $isadmin = "A";
         } else {
             $view_page = "error_close_app";
             $lineid = "";
