@@ -6,7 +6,6 @@
 
 @section('content')
 
-<<<<<<< HEAD
 {{-- @foreach($setting as $data)
 @php
     $hos_name = $data->hos_name;
@@ -15,18 +14,12 @@
 @endphp
 @endforeach --}}
 
-=======
->>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
 <div class="page-content header-clear-small">
 
     <div class="card card-style shadow-xl rounded-m">
         <div class="cal-footer">
 
-<<<<<<< HEAD
             <h4 class="cal-title text-center text-uppercase font-25 bg-pink2-dark color-white">ข้อมูลวัคซีนของคุณ</h6>
-=======
-            <h4 class="cal-title text-center text-uppercase font-25 bg-pink2-dark color-white">{{ $moduletitle }}</h6>
->>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
 
             <div class="divider mb-0"></div>
 
@@ -53,12 +46,9 @@
                                 <li>Lot number : {{ $data->vaccine_lot_no }}</li>
                                 <li>Serial number : {{ $data->serial_no }}</li>
                                 @endif
-<<<<<<< HEAD
                                 @if ($data->moph_certificate_code || null)
                                 <li>ใบรับรอง : <a target="_blank" href="https://co19cert.moph.go.th/cert?id={{ $data->moph_certificate_code }}">คลิกดูใบรับรอง</a></li>
                                 @endif
-=======
->>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
                             </ul>
                         </div>
                     </div>

@@ -46,7 +46,7 @@ return [
         'mysql_hos' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST1', '203.157.220.244'),
+            'host' => env('DB_HOST1', '200.200.200.10'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE1', 'hos'),
             'username' => env('DB_USERNAME1', 'ghost'),

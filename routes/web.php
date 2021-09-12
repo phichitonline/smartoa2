@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/consent', function () {
+    return view('consent');
+});
+
 // Route::get('/recaptcha', function () {
 //     return view('recaptcha');
 // });

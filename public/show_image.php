@@ -5,7 +5,8 @@ $hn = "000035634";
 header("Content-type: image/jpeg");
 
 	try {
-		$host = "200.200.200.12";
+		// $host = "200.200.200.12";
+		$host = "200.200.200.10";
         $db = "hos";
         $user = "sa";
         $pwd = "p6rik=9trkosbo";

@@ -181,11 +181,7 @@
                     <img class="img-fluid" src="images/menu_v2_card.png">
                 </div>
             </a>
-<<<<<<< HEAD
             <a href="{{ url('/') }}/emr" class="col-6 pl-0">
-=======
-            <a href="#" class="col-6 pl-0">
->>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
                 <div class="card card-style ml-2 mb-3">
                     <img class="img-fluid" src="images/menu_v2_emr.png">
                 </div>
@@ -195,7 +191,6 @@
                     <img class="img-fluid" src="images/menu_v2_oapp.png">
                 </div>
             </a>
-<<<<<<< HEAD
             <a href="{{ url('/') }}/vaccine" class="col-6 pl-0">
                 <div class="card card-style ml-2 mb-3">
                     <img class="img-fluid" src="images/menu_v2_vaccine.png">
@@ -214,30 +209,6 @@
             </a>
 
 
-=======
-            <!--<a href="{{ url('/') }}/book" class="col-6 pl-0">-->
-            <a href="{{ url('/') }}/vaccine" class="col-6 pl-0">
-                <div class="card card-style ml-2 mb-3">
-                    <img class="img-fluid" src="images/menu_v2_covid19.png">
-                </div>
-            </a>
-{{--
-            <a href="#" class="col-6 pr-0">
-                <div class="card card-style mr-2 mb-2">
-                    <i class="fa fa-stethoscope color-green1-dark fa-3x mt-5"></i>
-                    <h1 class="pt-4">ตรวจสุขภาพ</h1>
-                    <p class="font-11 opacity-50 mt-n1">ผลตรวจสุขภาพ</p>
-                </div>
-            </a>
-            <a href="#" id="openWindowWeb" onclick="openWindowWeb()" class="col-6 pl-0">
-                <div class="card card-style ml-2 mb-3">
-                    <i class="fa fa-globe color-blue2-dark fa-3x mt-5"></i>
-                    <h1 class="pt-4">เว็บไซต์</h1>
-                    <p class="font-11 opacity-50 mt-n1">เว็บโรงพยาบาล</p>
-                </div>
-            </a>
- --}}
->>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
             <a href="tel:1669" class="col-6 pr-0">
                 <div class="card card-style mr-2 mb-2">
                     <img class="img-fluid" src="images/1669-4.png">
@@ -317,7 +288,6 @@
             <p class="footer-copyright">{!! config('app.copyright') !!}</p>
 
             @if ($isadmin == "A")
-<<<<<<< HEAD
 
             {{-- <a href="#" onclick="event.preventDefault();
                 document.getElementById('msg-form').submit();"
@@ -329,8 +299,6 @@
                 </form> --}}
 
             <!--<a href="https://restful.tphcp.go.th/smarthospital/flex_form.php" class="btn btn-m btn-center-l text-uppercase font-900 bg-pink2-dark rounded-sm shadow-xl mt-4 mb-0">ประกาศข่าวสมาชิก LineOA</a>-->
-=======
->>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
             <a href="{{ url('/') }}/setting" class="btn btn-m btn-center-l text-uppercase font-900 bg-red2-dark rounded-sm shadow-xl mt-4 mb-0">Setting</a>
             <a href="{{ url('/') }}/userman" class="btn btn-m btn-center-l text-uppercase font-900 bg-blue2-dark rounded-sm shadow-xl mt-4 mb-0">จัดการผู้ดูแล</a>
             @endif

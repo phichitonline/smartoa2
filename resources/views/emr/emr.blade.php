@@ -6,7 +6,6 @@
 
 @section('content')
 
-<<<<<<< HEAD
 @php
     if ($status_type == "IPD") {
         $h_color = "bg-red2-dark";
@@ -29,16 +28,6 @@
 </div>
 
 @foreach ($visit_detail as $data)
-=======
-@foreach ($visit_detail as $data)
-
-<div class="header header-fixed header-logo-center bg-blue2-dark">
-    <a href="#" class="header-title color-white">{{ DateThaiShort($data->vstdate) }}</a>
-    <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-    <a href="#" class="header-icon header-icon-4"><i class="fas fa-stethoscope"></i></a>
-</div>
-
->>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
 <div class="page-content header-clear-medium">
 
     {{-- <div class="row text-center mb-0 mt-n2">
@@ -58,11 +47,7 @@
         </a>
     </div> --}}
 
-<<<<<<< HEAD
         <div class="card card-style">
-=======
-    <div class="card card-style">
->>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
         <div class="content mb-0">
             <h4 class="font-700 text-uppercase font-12 opacity-30 mb-3 mt-n2">อาการสำคัญ</h4>
             <div class="row mb-3">
@@ -243,11 +228,7 @@
                     <div class="row mb-3">
                         <div class="col-4"><p class="font-13 mb-0 font-500 color-theme text-left">X-Ray</p></div>
                         <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-center"></p></div>
-<<<<<<< HEAD
                         <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-right">???</p></div>
-=======
-                        <div class="col-4"><p class="font-13 mb-0 font-800 color-theme text-right">CXR Left</p></div>
->>>>>>> f12a0e8bdfc853b0ae25016c4836a5b0b4aae427
                         <div class="divider w-100 mb-0 mt-0"></div>
                     </div>
                 </div>

@@ -13,10 +13,32 @@
         <span><i class="fa fa-check"></i></span>
         <strong>{{ Session('setting-updated') }}</strong>
         <button type="button" class="close color-white opacity-60 font-16" data-dismiss="alert" aria-label="Close">&times;</button>
-    </div> 
-    
+    </div>
+
     {{-- <div id="toast-3" class="toast toast-tiny toast-top bg-green1-dark" data-delay="3000" data-autohide="true"><i class="fa fa-check mr-3"></i>บันทึกสำเร็จ</div> --}}
     @endif
+
+    <div class="card card-style">
+        <div class="content pb-0">
+            <h4 class="font-400">Roboto</h4>
+            <p>Our page uses Roboto Family as the main font.</p>
+
+            <h4 class="font-20 font-500" style="font-family:'Poppins'">Poppins</h4>
+            <p style="font-family:'Poppins'">This is the Poppins Sans family font.</p>
+
+            <h4 style="font-family:'Open Sans'">Open Sans</h4>
+            <p style="font-family:'Open Sans'">This is the Open Sans  family font.</p>
+
+            <h4 style="font-family:'Lato'">Lato</h4>
+            <p style="font-family:'Lato'">This is the Google Lato family font.</p>
+
+            <h4 class="font-600" style="font-family:'Source Sans Pro'">Source Sans Pro</h4>
+            <p style="font-family:'Source Sans Pro'">This is the Source Sans Pro family font.</p>
+
+            <h4 class="font-20" style="font-family:'Satisfy'">Satisfy</h4>
+            <p class="font-15 mb-1" style="font-family:'Satisfy'">This is the Source Sans Pro family font.</p>
+        </div>
+    </div> 
 
 @foreach ($setting as $data)
 <form method="POST" action="{{ route('setting.update', $data->id) }}">
@@ -34,12 +56,12 @@
             <div class="input-style input-style-2 input-required">
                 <span class="color-highlight input-style-1-active">ชื่อโรงพยาบาล</span>
                 <input class="form-control" type="text" name="hos_name" value="{{ $data->hos_name }}">
-            </div> 
+            </div>
             <div class="input-style input-style-2 input-required">
                 <span class="color-highlight input-style-1-active">เบอร์โทรศัพท์</span>
                 <em>(required)</em>
                 <input class="form-control" type="tel" name="tel" value="{{ $data->hos_tel }}">
-            </div> 
+            </div>
             <div class="input-style input-style-2 input-required">
                 <span class="color-highlight input-style-1-active">เว็บไซต์</span>
                 <em>(required)</em>
@@ -49,13 +71,13 @@
                 <span class="color-highlight input-style-1-active">Facebook</span>
                 <em>(required)</em>
                 <input class="form-control" type="url" name="hos_facebook" value="{{ $data->hos_facebook }}">
-            </div> 
+            </div>
             <div class="input-style input-style-2 input-required">
                 <span class="color-highlight input-style-1-active">Youtube</span>
                 <em>(required)</em>
                 <input class="form-control" type="url" name="hos_youtube" value="{{ $data->hos_youtube }}">
-            </div> 
-        </div>  
+            </div>
+        </div>
 
         <div class="cal-schedule">
             <em>
@@ -73,41 +95,41 @@
                 <div class="input-style input-style-2 input-required mt-4">
                     <span class="color-highlight input-style-1-active">หัวข้อ 1</span>
                     <input class="form-control" type="text" name="slide_1_text" value="{{ $data->slide_1_text }}">
-                </div> 
+                </div>
                 <div class="input-style input-style-2 input-required">
                     <span class="color-highlight input-style-1-active">ข้อความ 1</span>
                     <input class="form-control" type="text" name="slide_1_more" value="{{ $data->slide_1_more }}">
-                </div> 
+                </div>
                 <div class="input-style input-style-2 input-required">
                     <span class="color-highlight input-style-1-active">ชื่อภาพ 1 (ต้องอยู่ใน images/pictures/ ขนาด 300x200px)</span>
                     <input class="form-control" type="text" name="slide_1_picture" value="{{ $data->slide_1_picture }}">
-                </div> 
+                </div>
                 <div class="input-style input-style-2 input-required">
                     <span class="color-highlight input-style-1-active">หัวข้อ 2</span>
                     <input class="form-control" type="text" name="slide_2_text" value="{{ $data->slide_2_text }}">
-                </div> 
+                </div>
                 <div class="input-style input-style-2 input-required">
                     <span class="color-highlight input-style-1-active">ข้อความ 2</span>
                     <input class="form-control" type="text" name="slide_2_more" value="{{ $data->slide_2_more }}">
-                </div> 
+                </div>
                 <div class="input-style input-style-2 input-required">
                     <span class="color-highlight input-style-1-active">ชื่อภาพ 2 (ต้องอยู่ใน images/pictures/ ขนาด 300x200px)</span>
                     <input class="form-control" type="text" name="slide_2_picture" value="{{ $data->slide_2_picture }}">
-                </div> 
+                </div>
                 <div class="input-style input-style-2 input-required">
                     <span class="color-highlight input-style-1-active">หัวข้อ 3</span>
                     <input class="form-control" type="text" name="slide_3_text" value="{{ $data->slide_3_text }}">
-                </div> 
+                </div>
                 <div class="input-style input-style-2 input-required">
                     <span class="color-highlight input-style-1-active">ข้อความ 3</span>
                     <input class="form-control" type="text" name="slide_3_more" value="{{ $data->slide_3_more }}">
-                </div>  
+                </div>
                 <div class="input-style input-style-2 input-required">
                     <span class="color-highlight input-style-1-active">ชื่อภาพ 3 (ต้องอยู่ใน images/pictures/ ขนาด 300x200px)</span>
                     <input class="form-control" type="text" name="slide_3_picture" value="{{ $data->slide_3_picture }}">
-                </div> 
-            </div>   
-            
+                </div>
+            </div>
+
         </div>
 
         <div class="cal-schedule">
@@ -126,15 +148,15 @@
                 <div class="input-style input-style-2 input-required mt-4">
                     <span class="color-highlight input-style-1-active">ข้อความ 1</span>
                     <input class="form-control" type="text" name="pr_1" value="{{ $data->pr_1 }}">
-                </div> 
+                </div>
                 <div class="input-style input-style-2 input-required">
                     <span class="color-highlight input-style-1-active">ข้อความ 2</span>
                     <input class="form-control" type="text" name="pr_2" value="{{ $data->pr_2 }}">
-                </div> 
+                </div>
                 <div class="input-style input-style-2 input-required">
                     <span class="color-highlight input-style-1-active">ข้อความ 3</span>
                     <input class="form-control" type="text" name="pr_3" value="{{ $data->pr_3 }}">
-                </div>  
+                </div>
             </div>
         </div>
 
@@ -164,7 +186,7 @@
 
 
 </div>
-<!-- End of Page Content--> 
+<!-- End of Page Content-->
 
 @endsection
 
