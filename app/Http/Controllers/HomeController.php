@@ -23,7 +23,7 @@ class HomeController extends Controller
             $email = $_GET["decodedIDToken2"];
 
             $check_register = DB::connection('mysql')->select('
-            SELECT COUNT(*) AS countregist,cid,hn,tel,email,isadmin FROM patientusers WHERE lineid = "'.$userid.'"
+            SELECT COUNT(*) AS countregist,cid_encode,hn,tel,email,isadmin FROM patientusers WHERE lineid = "'.$userid.'"
             ');
 
             foreach($check_register as $data){
@@ -37,7 +37,7 @@ class HomeController extends Controller
                     $_SESSION["lineid"] = $_GET["userId"];
                     $_SESSION["email"] = $data->email;
                     $_SESSION["hn"] = $data->hn;
-                    $_SESSION["cid"] = $data->cid;
+                    $_SESSION["cid"] = $data->cid_encode;
                     $_SESSION["tel"] = $data->tel;
                     $_SESSION["isadmin"] = $data->isadmin;
                     session_write_close();
