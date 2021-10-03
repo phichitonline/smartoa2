@@ -41,23 +41,24 @@ class SessionregisterController extends Controller
      */
     public function store(Request $request, UserRegister $model)
     {
-        $cid = $request->get('cid');
+        $cid_check = $request->get('cid');
+        // $cid = strtoupper(md5($request->get('cid'))).":".substr($request->get('cid'),1,1).substr($request->get('cid'),-1);
         $bdate = $request->get('birthday');
         session_start();
         ob_start();
-        $_SESSION["cid"] = $request->get('cid');
+        $_SESSION["cid"] = strtoupper(md5($request->get('cid'))).":".substr($request->get('cid'),1,1).substr($request->get('cid'),-1);
         $_SESSION["birthdate"] = $request->get('birthday');
         session_write_close();
-        
+
         $dd = substr($bdate,0,2);
         $mm = substr($bdate,2,2);
         $yyyy = substr($bdate,4,4)-543;
         $birthday = $yyyy."-".$mm."-".$dd;
         $birthday = trim($birthday);
-        
+
         $check_opduser = DB::connection('mysql_hos')->select('
-        SELECT COUNT(*) AS userregist,hn,cid,pname,fname,lname FROM patient 
-        WHERE cid = "'.$cid.'" AND birthday = "'.$birthday.'"
+        SELECT COUNT(*) AS userregist,hn,cid,pname,fname,lname FROM patient
+        WHERE cid = "'.$cid_check.'" AND birthday = "'.$birthday.'"
         ');
         foreach($check_opduser as $data){
             if ($data->userregist > 0) {
@@ -68,7 +69,7 @@ class SessionregisterController extends Controller
                 $_SESSION["tel"] = $request->get('tel');
                 $_SESSION["hn"] = $data->hn;
                 $_SESSION["birthdate"] = $bdate;
-                $_SESSION["cid"] = $data->cid;
+                $_SESSION["cid"] = strtoupper(md5($data->cid)).":".substr($data->cid,1,1).substr($data->cid,-1);
                 $_SESSION["isadmin"] = "";
                 session_write_close();
                 // $model->create($request->all());
@@ -80,7 +81,7 @@ class SessionregisterController extends Controller
                 $_SESSION["lineid"] = $request->get('lineid');
                 $_SESSION["email"] = $request->get('email');
                 session_write_close();
-                return redirect()->route('ptregister.index')->with('session-alert', 'ไม่พบข้อมูลทะเบียนผู้ป่วยของคุณ หรือคุณอาจกรอกข้อมูลไม่ถูกต้อง ! กรุณาตรวจสอบ... หรือกรอกข้อมูลเพื่อลงทะเบียนทำบัตรใหม่');
+                return redirect()->route('ptregister.index')->with('session-alert', 'ไม่พบข้อมูลทะเบียนผู้ป่วยของคุณ หรือคุณอาจกรอกข้อมูลไม่ถูกต้อง ! กรุณาตรวจสอบเลขบัตรประชาชน และวันเดือนปีเกิดให้ถูกต้อง... หรือกรอกข้อมูลเพื่อลงทะเบียนทำบัตรใหม่');
             }
         }
 

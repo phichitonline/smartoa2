@@ -50,6 +50,7 @@ Route::get('/liff', function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/homeregister', 'HomeController@register')->name('homeregister');
 Route::get('/main', 'MainController@index')->name('main');
 Route::get('/search', 'SearchController@index')->name('search');
 Route::get('/book', 'BookController@index')->name('book');

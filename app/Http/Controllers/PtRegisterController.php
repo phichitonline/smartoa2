@@ -15,24 +15,13 @@ class PtRegisterController extends Controller
     public function index()
     {
         return view('patient.check', [
-            'moduletitle' => "ตรวจสอบข้อมูล",
-            // 'view_menu' => "disable",
+            'moduletitle' => "ลงทะเบียนผู้ป่วยใหม่",
+            'view_menu' => "disable",
         ]);
     }
 
     public function ptcheck(request $request)
     {
-        $request->validate(
-            [
-                'cid' => ['required', 'string', 'min:13'],
-                'birthday' => ['required', 'string', 'min:8'],
-            ],
-            [
-                'cid.required'=> 'กรุณากรอกเลข 13 หลัก',
-                'birthday.required'=> 'กรุณากรอกวันเดือนปีเกิด ตามตัวอย่างนี้ 31122530',
-            ]
-        );
-
         $cid = $request->get('cid');
         $bdate = $request->get('birthday');
         session_start();
@@ -118,13 +107,6 @@ class PtRegisterController extends Controller
     public function create(Request $request)
     {
         session_start();
-        if (!isset($_GET['cid'])) {
-            $cid = $_SESSION["cid"];
-            $birthdate = $_SESSION["birthdate"];
-        } else {
-            $cid = $_GET['cid'];
-            $birthdate = $_GET["birthdate"];
-        }
 
         if (isset($_SESSION["lineid"])) {
             $lineid = $_SESSION["lineid"];
@@ -134,19 +116,50 @@ class PtRegisterController extends Controller
             $email = "";
         }
 
-        $get_hos_value = DB::connection('mysql_hos')->select('
-            SELECT upper(concat("{",uuid(),"}")) AS get_uuid,LPAD((select serial_no as chn from serial where name="HN")+1,9,"0") AS get_hn
-            ,(select serial_no as chn from serial where name="HN")+1 AS get_serial_no
-        ');
-        foreach ($get_hos_value as $data) {
-            $hos_guid = $data->get_uuid;
-            $serial_no = $data->get_serial_no;
-            $hn = $data->get_hn;
+        if (!isset($_GET['cid'])) {
+            $cid = $_SESSION["cid"];
+            $birthdate = $_SESSION["birthdate"];
+        } else {
+            $cid = $_GET['cid'];
+            $birthdate = $_GET["birthdate"];
         }
-        DB::connection('mysql_hos')->insert('INSERT INTO hnlock (onlineid,hn,optype) VALUES ("'.$serial_no.'","'.$hn.'","GetHN")');
-        DB::connection('mysql_hos')->update('
-        UPDATE serial SET serial_no = "'.$serial_no.'" WHERE name = "HN"
-        ');
+
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $fromip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $fromip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $fromip = $_SERVER['REMOTE_ADDR'];
+        }
+
+        $osbrowser = $_SERVER['HTTP_USER_AGENT'];
+        $cid_encode = strtoupper(md5($cid)).":".substr($cid,1,1).substr($cid,-1);
+
+        DB::connection('mysql')->insert('INSERT INTO log_ptregister (id,cid,fromip,osbrowser,log_datetime) VALUES (NULL,"'.$cid_encode.'","'.$fromip.'","'.$osbrowser.'",NOW())');
+
+        if (!isset($_SESSION["get_uuid"])) {
+            $get_hos_value = DB::connection('mysql_hos')->select('
+                SELECT upper(concat("{",uuid(),"}")) AS get_uuid,LPAD((select serial_no as chn from serial where name="HN")+1,9,"0") AS get_hn
+                ,(select serial_no as chn from serial where name="HN")+1 AS get_serial_no
+            ');
+            foreach ($get_hos_value as $data) {
+                $hos_guid = $data->get_uuid;
+                $serial_no = $data->get_serial_no;
+                $hn = $data->get_hn;
+                ob_start();
+                $_SESSION["get_uuid"] = $data->get_uuid;
+                $_SESSION["get_serial_no"] = $data->get_serial_no;
+                $_SESSION["get_hn"] = $data->get_hn;
+                session_write_close();
+            }
+            DB::connection('mysql_hos')->insert('INSERT INTO hnlock (onlineid,hn,optype,lock_datetime) VALUES ("'.$cid.'","'.$hn.'","GetHN",NOW())');
+            DB::connection('mysql_hos')->update('UPDATE serial SET serial_no = "'.$serial_no.'" WHERE name = "HN"');
+        } else {
+            $hos_guid = $_SESSION["get_uuid"];
+            $serial_no = $_SESSION["get_serial_no"];
+            $hn = $_SESSION["get_hn"];
+        }
+
 
         $occupation = DB::connection('mysql_hos')->table('occupation')
         ->orderBy('name','ASC')->get();
@@ -192,6 +205,7 @@ class PtRegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request, UserRegister $model)
     {
         session_start();
@@ -290,7 +304,10 @@ class PtRegisterController extends Controller
         DB::connection('mysql_hos')->table('hnlock')->where('hn', '=', $request->hn)->delete();
 
         if (isset($_SESSION["lineid"])) {
-            $model->create($request->merge(['tel' => $request->hometel])->all());
+            $model->create($request->merge([
+                'tel' => $request->hometel,
+                'consent' => "R"
+            ])->all());
         }
 
 
@@ -347,6 +364,8 @@ class PtRegisterController extends Controller
             'patienthn' => $patienthn,
             'patientname' => $patientname,
         ]);
+
+        session_destroy();
     }
 
     /**

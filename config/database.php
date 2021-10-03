@@ -68,7 +68,7 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST2', '203.157.220.244'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE2', 'smarthos2'),
+            'database' => env('DB_DATABASE2', 'smartoa'),
             'username' => env('DB_USERNAME2', 'ghost'),
             'password' => env('DB_PASSWORD2', 'ghUD2gES'),
             'unix_socket' => env('DB_SOCKET', ''),

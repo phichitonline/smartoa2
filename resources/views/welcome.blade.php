@@ -37,13 +37,13 @@
                     {{-- <p id="decodedIDToken" class="mt-n1 color-highlight font-12"><b>Email:</b> </p> --}}
 
 
-                    <p class="mt-2 mb-0 boxed-text-xl">กด "เริ่มใช้งาน" เพื่อเข้าบริการออนไลน์</p>
+                    <p class="mt-2 mb-0 boxed-text-xl">กำลังตรวจสอบข้อมูล เพื่อเข้าบริการออนไลน์</p>
                     <p class="mt-0 mb-0 boxed-text-xl">{{ config('app.name') }}</p>
 
-                    <form method="get" action="{{ url("/") }}/consent" name=login id="loginform">
+                    <form method="get" action="{{ url("/") }}/home" name="loginform" id="loginform">
                         <input class="form-control" type="hidden" id="userId" name="userId">
                         <input class="form-control" type="hidden" id="decodedIDToken2" name="decodedIDToken2">
-                        <button type="submit" class="btn scale-box btn-m mt-3 btn-center-l rounded-l shadow-xl bg-highlight font-800 text-uppercase">เริ่มใช้งาน</button>
+                        <a href="#" type="submit" class="btn scale-box btn-m mt-3 btn-center-l rounded-l shadow-xl bg-highlight font-800 text-uppercase">กรุณารอสักครู่...</a>
                         {{-- <a href="#" data-back-button class="btn scale-box btn-m mt-5 btn-center-l rounded-l shadow-xl bg-highlight font-800 text-uppercase">เริ่มใช้งาน</a> --}}
                     </form>
 
@@ -69,9 +69,8 @@
                 liff.login()
             }
         })
+        // await liff.init({ liffId: "1654103357-zl6xB06Y" }) //ใช้งานจริง
         await liff.init({ liffId: "1655577633-EbDYm94w" })
-
-        //await liff.init({ liffId: "1654103357-zl6xB06Y" }) //*** LineLIFF รพร.ตะพานหิน
     }
     main()
 
@@ -85,7 +84,22 @@
         $('#decodedIDToken2').val(liff.getDecodedIDToken().email);
     }
 
+</script>
 
+<script type="text/javascript">
+    window.onload=function(){
+        var auto = setTimeout(function(){ autoRefresh(); }, 100);
+
+        function submitform(){
+        //   alert('Enter');
+          document.forms["loginform"].submit();
+        }
+
+        function autoRefresh(){
+           clearTimeout(auto);
+           auto = setTimeout(function(){ submitform(); autoRefresh(); }, 3000);
+        }
+    }
 </script>
 
 <script type="text/javascript" src="scripts/jquery.js"></script>

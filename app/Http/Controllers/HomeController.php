@@ -42,7 +42,7 @@ class HomeController extends Controller
                     $_SESSION["isadmin"] = $data->isadmin;
                     session_write_close();
                 } else {
-                    $view_page = "register";
+                    $view_page = "consent";
                     $view_menu = "disable";
                     $userid = $_GET["userId"];
                     $email = $_GET["decodedIDToken2"];
@@ -56,6 +56,14 @@ class HomeController extends Controller
             $email = "";
         }
 
+        if ($view_page == "home") {
+            DB::connection('mysql')->insert('INSERT INTO log_liffapp (id,userid,event,log_datetime) VALUES (NULL,"'.$userid.'","home",NOW())');
+        } else if ($view_page == "consent") {
+            DB::connection('mysql')->insert('INSERT INTO log_liffapp (id,userid,event,log_datetime) VALUES (NULL,"'.$userid.'","consent",NOW())');
+        } else {
+            DB::connection('mysql')->insert('INSERT INTO log_liffapp (id,userid,event,log_datetime) VALUES (NULL,"'.$userid.'","error",NOW())');
+        }
+
         return view($view_page, [
             'moduletitle' => "Home",
             'view_menu' => $view_menu,
@@ -65,6 +73,30 @@ class HomeController extends Controller
         ]);
     }
 
+    public function register()
+    {
+
+        if (isset($_GET["userId"])) {
+            $userid = $_GET["userId"];
+            $email = $_GET["decodedIDToken2"];
+            $consent = $_GET["consent"];
+            $view_page = "register";
+            $view_menu = "disable";
+        } else {
+            $view_page = "error_close_app";
+            $view_menu = "disable";
+            $userid = "";
+            $email = "";
+        }
+
+        return view($view_page, [
+            'moduletitle' => "Home",
+            'view_menu' => $view_menu,
+            'userid' => $userid,
+            'email' => $email,
+            'consent' => $consent,
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
